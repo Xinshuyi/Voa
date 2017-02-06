@@ -10,12 +10,22 @@
 #import "TopView.h"
 #import "MyFlowLayout.h"
 #import "CZAdditions.h"
+#import "XSYParentModel.h"
+
+typedef NS_ENUM(NSUInteger, SpeedValue) {
+    NormalSpeed,
+    LowSpeed
+};
 
 static NSString *ListenCellID = @"ListenCellID";
 
 @interface ListenController ()<UICollectionViewDelegate, UICollectionViewDataSource, TopViewDelegate, UIScrollViewDelegate>
 @property (nonatomic, strong) TopView *topView;
 @property (nonatomic, strong) UICollectionView *collectionView;
+@property (nonatomic, strong) UISegmentedControl *segmentedControl;
+@property (nonatomic, assign) SpeedValue speedValue;
+@property (nonatomic, strong) NSMutableArray<XSYParentModel *> *normalSpeedArr;
+@property (nonatomic, strong) NSMutableArray<XSYParentModel *> *lowSpeedArr;
 @end
 
 @implementation ListenController
@@ -26,8 +36,14 @@ static NSString *ListenCellID = @"ListenCellID";
 }
 
 - (void)setupUI{
+    // titleview
+    _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"常速",@"慢速"]];
+    _segmentedControl.bounds = CGRectMake(0, 0, screenWidth * 0.4, 25);
+    _segmentedControl.selectedSegmentIndex = 0;
+    self.navigationItem.titleView = _segmentedControl;
+    [_segmentedControl addTarget:self action:@selector(segmentControlChange:) forControlEvents:UIControlEventValueChanged];
     // 分版面的view
-    _topView = [[TopView alloc] init];
+    _topView = [[TopView alloc] initWithModelArr:self.speedValue == NormalSpeed ? self.normalSpeedArr : self.lowSpeedArr];
     _topView.frame = CGRectMake(0, 0, screenWidth, TopViewHeight);
     _topView.contentSize = CGSizeMake(screenWidth * ScreenWidthScale, 0);
     _topView.Delegate = self;
@@ -49,8 +65,19 @@ static NSString *ListenCellID = @"ListenCellID";
     [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:ListenCellID];
 }
 
+#pragma mark - segmentControl -
+- (void)segmentControlChange:(UISegmentedControl *)segmentControl{
+    NSInteger value = segmentControl.selectedSegmentIndex;
+    self.speedValue = value == 0 ? NormalSpeed : LowSpeed;
+    self.topView.modelArr = self.speedValue == NormalSpeed ? self.normalSpeedArr : self.lowSpeedArr;
+    NSLog(@"%zd",self.speedValue);
+    [self.topView initialization];
+    [self.collectionView reloadData];
+}
+
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return topViewButtonNum;
+    NSInteger num = self.speedValue == NormalSpeed ? self.normalSpeedArr.count : self.lowSpeedArr.count;
+    return num;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
@@ -72,6 +99,40 @@ static NSString *ListenCellID = @"ListenCellID";
     if ([scrollView isEqual:self.collectionView]){
         self.topView.offsetNum = round(scrollView.contentOffset.x/screenWidth);
     }
+//    [self.collectionView reloadData];
+}
+
+# pragma mark - lazy -
+- (NSMutableArray<XSYParentModel *> *)normalSpeedArr{
+    if (_normalSpeedArr == nil) {
+        NSArray *name = @[@"全部",@"美国",@"非洲",@"亚洲",@"中东",@"欧洲",@"科技",@"娱乐",@"经济",@"健康"];
+        NSArray *ID =@[@"0",@"101",@"102",@"103",@"104",@"105",@"106",@"107",@"108",@"109"];
+        _normalSpeedArr = [NSMutableArray array];
+        NSInteger num = name.count;
+        for (int i = 0; i < num; i ++) {
+            XSYParentModel *model = [[XSYParentModel alloc] init];
+            model.detailTitle = name[i];
+            model.parentID = ID[i];
+            [_normalSpeedArr addObject:model];
+        }
+    }
+    return _normalSpeedArr;
+}
+
+- (NSMutableArray<XSYParentModel *> *)lowSpeedArr{
+    if (_lowSpeedArr == nil) {
+        NSArray *name = @[@"全部",@"美国",@"世界",@"生活",@"娱乐",@"健康",@"教务",@"商务",@"科技",@"历史",@"单词故事"];
+        NSArray *ID =@[@"0",@"1",@"2",@"3",@"4",@"5",@"6",@"7",@"8",@"9",@"10"];
+        _lowSpeedArr = [NSMutableArray array];
+        NSInteger num = name.count;
+        for (int i = 0; i < num; i ++) {
+            XSYParentModel *model = [[XSYParentModel alloc] init];
+            model.detailTitle = name[i];
+            model.parentID = ID[i];
+            [_lowSpeedArr addObject:model];
+        }
+    }
+    return _lowSpeedArr;
 }
 
 

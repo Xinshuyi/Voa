@@ -35,6 +35,12 @@
 		22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2831E44B25E00F300EB /* UIView+Extension.m */; };
 		22D3D2961E44B2F600F300EB /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2951E44B2F600F300EB /* NavigationController.m */; };
 		22E659321E478C9900789F93 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659311E478C9900789F93 /* DetailTableViewController.m */; };
+		22E659351E48237400789F93 /* XSYParentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659341E48237400789F93 /* XSYParentModel.m */; };
+		22E659381E4866D800789F93 /* XSYDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659371E4866D800789F93 /* XSYDetailCell.m */; };
+		22E6593B1E48698000789F93 /* XSYDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E6593A1E48698000789F93 /* XSYDetailModel.m */; };
+		22E6593E1E48ABDA00789F93 /* NetworkingTools.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E6593D1E48ABDA00789F93 /* NetworkingTools.m */; };
+		22E659411E48ACA700789F93 /* XSYNetworking.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659401E48ACA700789F93 /* XSYNetworking.m */; };
+		22E659441E48BCF000789F93 /* XSYRefreshHeader.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659431E48BCF000789F93 /* XSYRefreshHeader.m */; };
 		AF4CF0842AA15218400BE7CF /* libPods-Voa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CA67320E147C8A4F07E75F /* libPods-Voa.a */; };
 /* End PBXBuildFile section */
 
@@ -99,6 +105,18 @@
 		22D3D2951E44B2F600F300EB /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
 		22E659301E478C9900789F93 /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		22E659311E478C9900789F93 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
+		22E659331E48237400789F93 /* XSYParentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYParentModel.h; sourceTree = "<group>"; };
+		22E659341E48237400789F93 /* XSYParentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYParentModel.m; sourceTree = "<group>"; };
+		22E659361E4866D800789F93 /* XSYDetailCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYDetailCell.h; sourceTree = "<group>"; };
+		22E659371E4866D800789F93 /* XSYDetailCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYDetailCell.m; sourceTree = "<group>"; };
+		22E659391E48698000789F93 /* XSYDetailModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYDetailModel.h; sourceTree = "<group>"; };
+		22E6593A1E48698000789F93 /* XSYDetailModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYDetailModel.m; sourceTree = "<group>"; };
+		22E6593C1E48ABDA00789F93 /* NetworkingTools.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NetworkingTools.h; sourceTree = "<group>"; };
+		22E6593D1E48ABDA00789F93 /* NetworkingTools.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NetworkingTools.m; sourceTree = "<group>"; };
+		22E6593F1E48ACA700789F93 /* XSYNetworking.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYNetworking.h; sourceTree = "<group>"; };
+		22E659401E48ACA700789F93 /* XSYNetworking.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYNetworking.m; sourceTree = "<group>"; };
+		22E659421E48BCF000789F93 /* XSYRefreshHeader.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XSYRefreshHeader.h; path = ../../../../../XSYRefreshHeader.h; sourceTree = "<group>"; };
+		22E659431E48BCF000789F93 /* XSYRefreshHeader.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XSYRefreshHeader.m; path = ../../../../../XSYRefreshHeader.m; sourceTree = "<group>"; };
 		E8CA67320E147C8A4F07E75F /* libPods-Voa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
 /* End PBXFileReference section */
 
@@ -200,6 +218,10 @@
 		22D3D2491E44489700F300EB /* NetworkTool */ = {
 			isa = PBXGroup;
 			children = (
+				22E6593C1E48ABDA00789F93 /* NetworkingTools.h */,
+				22E6593D1E48ABDA00789F93 /* NetworkingTools.m */,
+				22E6593F1E48ACA700789F93 /* XSYNetworking.h */,
+				22E659401E48ACA700789F93 /* XSYNetworking.m */,
 			);
 			path = NetworkTool;
 			sourceTree = "<group>";
@@ -272,6 +294,10 @@
 		22D3D2511E44489700F300EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22E659331E48237400789F93 /* XSYParentModel.h */,
+				22E659341E48237400789F93 /* XSYParentModel.m */,
+				22E659391E48698000789F93 /* XSYDetailModel.h */,
+				22E6593A1E48698000789F93 /* XSYDetailModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -283,6 +309,8 @@
 				226475C41E46C20A0070959A /* TopView.m */,
 				226475C61E4719430070959A /* MyFlowLayout.h */,
 				226475C71E4719430070959A /* MyFlowLayout.m */,
+				22E659361E4866D800789F93 /* XSYDetailCell.h */,
+				22E659371E4866D800789F93 /* XSYDetailCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -424,6 +452,8 @@
 		22D3D2981E44BDC900F300EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22E659421E48BCF000789F93 /* XSYRefreshHeader.h */,
+				22E659431E48BCF000789F93 /* XSYRefreshHeader.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -474,6 +504,7 @@
 		22D3D2231E44456400F300EB /* Project object */ = {
 			isa = PBXProject;
 			attributes = {
+				CLASSPREFIX = XSY;
 				LastUpgradeCheck = 0810;
 				ORGANIZATIONNAME = DogeEggEgg;
 				TargetAttributes = {
@@ -566,16 +597,21 @@
 			buildActionMask = 2147483647;
 			files = (
 				22D3D28F1E44B25E00F300EB /* UIViewController+CZAddition.m in Sources */,
+				22E6593B1E48698000789F93 /* XSYDetailModel.m in Sources */,
 				22D3D2881E44B25E00F300EB /* NSString+CZHash.m in Sources */,
+				22E659441E48BCF000789F93 /* XSYRefreshHeader.m in Sources */,
 				22D3D2331E44456400F300EB /* AppDelegate.m in Sources */,
+				22E659381E4866D800789F93 /* XSYDetailCell.m in Sources */,
 				22D3D28A1E44B25E00F300EB /* UIButton+CZAddition.m in Sources */,
 				22D3D2841E44B25E00F300EB /* NSArray+Log.m in Sources */,
 				22D3D2911E44B25E00F300EB /* UIButton+Helper.m in Sources */,
+				22E659351E48237400789F93 /* XSYParentModel.m in Sources */,
 				22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */,
 				226475B81E45FE5A0070959A /* EssayController.m in Sources */,
 				22D3D2851E44B25E00F300EB /* NSAttributedString+CZAdditon.m in Sources */,
 				22D3D2891E44B25E00F300EB /* NSString+CZPath.m in Sources */,
 				22D3D2871E44B25E00F300EB /* NSString+CZBase64.m in Sources */,
+				22E6593E1E48ABDA00789F93 /* NetworkingTools.m in Sources */,
 				22D3D28B1E44B25E00F300EB /* UIColor+CZAddition.m in Sources */,
 				22D3D2301E44456400F300EB /* main.m in Sources */,
 				226475C81E4719430070959A /* MyFlowLayout.m in Sources */,
@@ -583,6 +619,7 @@
 				22D3D25D1E44497000F300EB /* TabbarController.m in Sources */,
 				226475BE1E45FE8B0070959A /* MineController.m in Sources */,
 				226475C51E46C20A0070959A /* TopView.m in Sources */,
+				22E659411E48ACA700789F93 /* XSYNetworking.m in Sources */,
 				22D3D2901E44B25E00F300EB /* UIBarButtonItem+Extension.m in Sources */,
 				22D3D28D1E44B25E00F300EB /* UIScreen+CZAddition.m in Sources */,
 				226475C11E45FE9E0070959A /* VideoController.m in Sources */,

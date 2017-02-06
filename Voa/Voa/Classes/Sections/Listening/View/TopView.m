@@ -7,6 +7,8 @@
 //
 
 #import "TopView.h"
+#import "XSYParentModel.h"
+
 #define MarginHorizontal 10
 #define MarginVertical 5
 #define BtnWidth (self.contentSize.width - (topViewButtonNum + 1) * MarginHorizontal)/(topViewButtonNum * 1.0)
@@ -18,14 +20,14 @@
 @end
 
 @implementation TopView
-- (instancetype)initWithFrame:(CGRect)frame{
-    if (self = [super initWithFrame:frame]) {
+- (instancetype)initWithModelArr:(NSArray<XSYParentModel *> *)modelArr{
+    if (self = [super init]) {
         self.showsHorizontalScrollIndicator = NO;
         self.backgroundColor = [UIColor whiteColor];
-        for (int i = 0; i < topViewButtonNum; i++) {
+        for (int i = 0; i < modelArr.count; i++) {
             UIButton *btn = [[UIButton alloc] init];
             btn.tag = i;
-            [btn setTitle:[NSString stringWithFormat:@"%zd",i] forState:UIControlStateNormal];
+            [btn setTitle:modelArr[i].detailTitle forState:UIControlStateNormal];
             [btn setBackgroundColor:mainColor];
             [self addSubview:btn];
             [btn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
@@ -62,6 +64,15 @@
     }
 }
 
+- (void)initialization{
+    if (![self.btnArr[0] isEqual:self.lastBtn]){
+        self.btnArr[0].selected = YES;
+        self.lastBtn.selected = NO;
+        self.lastBtn = self.btnArr[0];
+        [self setContentOffset:CGPointZero animated:YES];
+    }
+}
+
 - (void)setOffsetNum:(CGFloat)offsetNum{
     _offsetNum = offsetNum;
     NSInteger numTag = round(offsetNum);
@@ -72,6 +83,30 @@
         self.lastBtn = self.btnArr[numTag];
         CGPoint contentOffset = CGPointMake(offsetNum * (MarginHorizontal + BtnWidth), 0);
         [self setContentOffset:contentOffset animated:YES];
+    }
+}
+- (void)setModelArr:(NSMutableArray<XSYParentModel *> *)modelArr{
+    _modelArr = modelArr;
+    NSInteger delata = modelArr.count - self.btnArr.count;
+    if (delata > 0) {
+        for (int i = 0; i < delata; i ++) {
+            UIButton *moreBtn = [[UIButton alloc] init];
+            [self addSubview:moreBtn];
+            [self.btnArr addObject:moreBtn];
+            moreBtn.tag = i + self.btnArr.count - 1;
+            [moreBtn setTitleColor:[UIColor blackColor] forState:UIControlStateSelected];
+            // 监听按钮
+            [moreBtn addTarget:self action:@selector(clickBtn:) forControlEvents:UIControlEventTouchUpInside];
+        }
+    }else{
+        for (int i = 0; i < -delata; i ++) {
+            [self.btnArr.lastObject removeFromSuperview];
+            [self.btnArr removeLastObject];
+        }
+    }
+    for (int i = 0; i < modelArr.count; i ++) {
+        [self.btnArr[i] setTitle:modelArr[i].detailTitle forState:UIControlStateNormal];
+        [self.btnArr[i] setBackgroundColor:mainColor];
     }
 }
 
