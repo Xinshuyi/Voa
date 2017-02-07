@@ -11,11 +11,7 @@
 #import "MyFlowLayout.h"
 #import "CZAdditions.h"
 #import "XSYParentModel.h"
-
-typedef NS_ENUM(NSUInteger, SpeedValue) {
-    NormalSpeed,
-    LowSpeed
-};
+#import "XSYListeningCell.h"
 
 static NSString *ListenCellID = @"ListenCellID";
 
@@ -35,6 +31,7 @@ static NSString *ListenCellID = @"ListenCellID";
     [self setupUI];
 }
 
+#pragma mark - segmentedcontrol init and collection inti -
 - (void)setupUI{
     // titleview
     _segmentedControl = [[UISegmentedControl alloc] initWithItems:@[@"常速",@"慢速"]];
@@ -62,7 +59,7 @@ static NSString *ListenCellID = @"ListenCellID";
     self.collectionView.dataSource = self;
     self.collectionView.delegate = self;
     // 注册
-    [self.collectionView registerClass:[UICollectionViewCell class] forCellWithReuseIdentifier:ListenCellID];
+    [self.collectionView registerClass:[XSYListeningCell class] forCellWithReuseIdentifier:ListenCellID];
 }
 
 #pragma mark - segmentControl -
@@ -72,34 +69,45 @@ static NSString *ListenCellID = @"ListenCellID";
     self.topView.modelArr = self.speedValue == NormalSpeed ? self.normalSpeedArr : self.lowSpeedArr;
     NSLog(@"%zd",self.speedValue);
     [self.topView initialization];
+    [self initialization];
     [self.collectionView reloadData];
 }
 
+#pragma mark - collection offset set zero -
+- (void)initialization{
+    [self.collectionView setContentOffset:CGPointZero animated:YES];
+}
+
+#pragma mark - datasource and delegate -
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
     NSInteger num = self.speedValue == NormalSpeed ? self.normalSpeedArr.count : self.lowSpeedArr.count;
     return num;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
-    UICollectionViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ListenCellID forIndexPath:indexPath];
+    XSYListeningCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:ListenCellID forIndexPath:indexPath];
+    NSMutableArray *parentArr = self.speedValue == NormalSpeed ? self.normalSpeedArr : self.lowSpeedArr;
+    XSYParentModel *model = parentArr[indexPath.row];
+    cell.model = model;
     cell.backgroundColor = [UIColor cz_randomColor];
     return cell;
-}
-
-- (void)topView:(TopView *)top didClickButton:(UIButton *)button{
-    NSLog(@"%zd",button.tag);
-    CGFloat offsetX = button.tag * screenWidth;
-    CGPoint offset = self.collectionView.contentOffset;
-    offset.x = offsetX;
-    [self.collectionView setContentOffset:offset animated:YES];
 }
 
 - (void)scrollViewDidEndDecelerating:(UIScrollView *)scrollView
 {
     if ([scrollView isEqual:self.collectionView]){
         self.topView.offsetNum = round(scrollView.contentOffset.x/screenWidth);
+        NSLog(@"-------%f",self.topView.offsetNum);
     }
-//    [self.collectionView reloadData];
+}
+
+#pragma mark - topviewdelegate -
+- (void)topView:(TopView *)top didClickButton:(UIButton *)button{
+    NSLog(@"%zd",button.tag);
+    CGFloat offsetX = button.tag * screenWidth;
+    CGPoint offset = self.collectionView.contentOffset;
+    offset.x = offsetX;
+    [self.collectionView setContentOffset:offset animated:YES];
 }
 
 # pragma mark - lazy -
@@ -113,6 +121,8 @@ static NSString *ListenCellID = @"ListenCellID";
             XSYParentModel *model = [[XSYParentModel alloc] init];
             model.detailTitle = name[i];
             model.parentID = ID[i];
+            // 区分接口
+            model.speedValue = NormalSpeed;
             [_normalSpeedArr addObject:model];
         }
     }
@@ -129,6 +139,8 @@ static NSString *ListenCellID = @"ListenCellID";
             XSYParentModel *model = [[XSYParentModel alloc] init];
             model.detailTitle = name[i];
             model.parentID = ID[i];
+            // 区分接口
+            model.speedValue = LowSpeed;
             [_lowSpeedArr addObject:model];
         }
     }

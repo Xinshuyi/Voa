@@ -5,7 +5,11 @@
 //  Created by xin on 2017/2/4.
 //  Copyright © 2017年 DogeEggEgg. All rights reserved.
 //
-
+#import <Foundation/Foundation.h>
+typedef NS_ENUM(NSUInteger, SpeedValue) {
+    NormalSpeed,
+    LowSpeed
+};
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 #define topViewButtonNum 6

@@ -20,7 +20,7 @@
     
     UIWindow *window = [[UIWindow alloc] init];
     self.window = window;
-    self.window.rootViewController = [[DetailTableViewController alloc] init];//[[TabbarController alloc] init];
+    self.window.rootViewController = [[TabbarController alloc] init];
     [window makeKeyAndVisible];
     
     return YES;

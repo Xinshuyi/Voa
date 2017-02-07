@@ -11,4 +11,5 @@
 @interface XSYParentModel : NSObject
 @property (nonatomic, copy) NSString *detailTitle;
 @property (nonatomic, copy) NSString *parentID;
+@property (nonatomic, assign) SpeedValue speedValue;
 @end

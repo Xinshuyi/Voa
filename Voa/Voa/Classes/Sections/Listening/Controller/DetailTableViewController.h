@@ -8,6 +8,15 @@
 
 #import <UIKit/UIKit.h>
 
+@class XSYParentModel;
+
 @interface DetailTableViewController : UITableViewController
+
+/**
+ 具体板块名称和接口参数
+ */
+@property (nonatomic, strong) XSYParentModel *model;
+
+- (void)refreshUI;
 
 @end

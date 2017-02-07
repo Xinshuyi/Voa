@@ -47,11 +47,15 @@
     [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.shadowView);
         make.centerY.equalTo(self.shadowView).offset(-15);
+        make.leading.equalTo(self.contentView).offset(20);
+        make.trailing.equalTo(self.contentView).offset(-20);
     }];
     
     [self.titleCnView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.centerX.equalTo(self.shadowView);
         make.centerY.equalTo(self.shadowView).offset(15);
+        make.leading.equalTo(self.contentView).offset(20);
+        make.trailing.equalTo(self.contentView).offset(-20);
     }];
     
     

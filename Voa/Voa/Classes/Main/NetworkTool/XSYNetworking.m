@@ -12,6 +12,7 @@
 #import "XSYDetailModel.h"
 
 @implementation XSYNetworking
+
 + (void)getVoaNormalSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleChangSuApi2.jsp";
     NSDictionary *para = @{@"maxid":maxID, @"type":@"iOS",@"format":@"json",@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
@@ -29,4 +30,47 @@
         }
     }];
 }
+
++ (void)getVoaLowSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleApi2.jsp";
+    NSDictionary *para = @{@"type":@"iOS",@"format":@"json",@"maxid":maxID,@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
+    [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
+        if (error == nil) {
+            NSArray *array = response[@"data"];
+            NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
+            if (successBlock) {
+                successBlock(modelArr);
+            }
+        }else{
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }
+    }];
+}
+
++ (void)getVoaListeningWithSpeedValue:(SpeedValue)speedValue Page:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    if (speedValue == NormalSpeed) {
+        [self getVoaNormalSpeedWithPage:page parentID:parentID maxID:maxID successBlock:^(id response) {
+            if (successBlock) {
+                successBlock(response);
+            }
+        } failureBlock:^(NSError *error) {
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }];
+    }else{
+        [self getVoaLowSpeedWithPage:page parentID:parentID maxID:maxID successBlock:^(id response) {
+            if (successBlock) {
+                successBlock(response);
+            }
+        } failureBlock:^(NSError *error) {
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }];
+    }
+}
+
 @end

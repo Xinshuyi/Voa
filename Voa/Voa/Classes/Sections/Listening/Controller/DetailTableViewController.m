@@ -11,12 +11,15 @@
 #import <MJRefresh.h>
 #import "XSYDetailModel.h"
 #import "XSYDetailCell.h"
+#import "XSYParentModel.h"
 #import "XSYNetworking.h"
 #import "XSYRefreshHeader.h"
+#import <SVProgressHUD.h>
 
 static NSString *detailCellID = @"detailCellID";
 @interface DetailTableViewController ()
 @property (nonatomic, strong) NSMutableArray <XSYDetailModel *> *modelArr;
+@property (nonatomic, assign) NSInteger page;
 @end
 
 @implementation DetailTableViewController
@@ -28,20 +31,47 @@ static NSString *detailCellID = @"detailCellID";
     self.tableView.rowHeight = 200;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
+    // Set header
     XSYRefreshHeader *header = [XSYRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
   
-    // Set header
     self.tableView.mj_header = header;
+    [self.tableView.mj_header beginRefreshing];
     
+    // set footer
+    MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
+    self.tableView.mj_footer = footer;
 }
 
+#pragma mark - refreshUI to keep data new -
+
+- (void)refreshUI{
+    [self.tableView.mj_header beginRefreshing];
+    NSLog(@"!!!!%s",__func__);
+}
+
+#pragma mark - load data -
+
 - (void)loadNewData{
-    [XSYNetworking getVoaNormalSpeedWithPage:1 parentID:@"0" maxID:@"0" successBlock:^(NSArray <XSYDetailModel *> *response) {
-        self.modelArr = [NSMutableArray arrayWithArray:response];
-        [self.tableView.mj_header endRefreshing];
+    self.page = 1;
+    [XSYNetworking getVoaListeningWithSpeedValue:self.model.speedValue Page:self.page parentID:self.model.parentID maxID:@"0" successBlock:^(NSMutableArray<XSYDetailModel *> *response) {
+        self.modelArr = response;
         [self.tableView reloadData];
+        [self.tableView.mj_header endRefreshing];
     } failureBlock:^(NSError *error) {
-        
+        [self.tableView.mj_header endRefreshing];
+        [SVProgressHUD showErrorWithStatus:@"网络不佳"];
+    }];
+}
+
+- (void)loadMoreData{
+    self.page++;
+    [XSYNetworking getVoaListeningWithSpeedValue:self.model.speedValue Page:self.page parentID:self.model.parentID maxID:@"0" successBlock:^(NSMutableArray<XSYDetailModel *> *response) {
+        [self.modelArr addObjectsFromArray:response];
+        [self.tableView reloadData];
+        [self.tableView.mj_footer endRefreshing];
+    } failureBlock:^(NSError *error) {
+        [self.tableView.mj_footer endRefreshing];
+        [SVProgressHUD showErrorWithStatus:@"网络不佳"];
     }];
 }
 
@@ -52,13 +82,13 @@ static NSString *detailCellID = @"detailCellID";
 #pragma mark - Table view data source
 
 - (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section {
-    return 12;
+    return self.modelArr.count;
 }
-
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath {
     XSYDetailCell *cell = [tableView dequeueReusableCellWithIdentifier:detailCellID forIndexPath:indexPath];
     cell.backgroundColor = [UIColor cz_randomColor];
+    cell.model = self.modelArr[indexPath.row];
     return cell;
 }
 
