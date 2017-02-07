@@ -15,6 +15,7 @@
 #import "XSYNetworking.h"
 #import "XSYRefreshHeader.h"
 #import <SVProgressHUD.h>
+#import "XSYListenPlayerView.h"
 
 static NSString *detailCellID = @"detailCellID";
 @interface DetailTableViewController ()
@@ -28,7 +29,7 @@ static NSString *detailCellID = @"detailCellID";
     [super viewDidLoad];
     // 注册
     [self.tableView registerClass:[XSYDetailCell class] forCellReuseIdentifier:detailCellID];
-    self.tableView.rowHeight = 200;
+    self.tableView.rowHeight = screenWidth * 0.618;
     self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 
     // Set header
@@ -94,5 +95,7 @@ static NSString *detailCellID = @"detailCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
+    XSYListenPlayerView *playerView = [XSYListenPlayerView restartPlayerView];
+    
 }
 @end

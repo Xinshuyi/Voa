@@ -19,4 +19,5 @@
 @property (nonatomic, strong) NSMutableArray<XSYParentModel *> *modelArr;
 - (instancetype)initWithModelArr:(NSArray<XSYParentModel *>*)modelArr;
 - (void)initialization;
+
 @end

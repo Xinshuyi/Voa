@@ -13,10 +13,15 @@
 #import <UIImageView+WebCache.h>
 
 @interface XSYDetailCell ()
+
 @property (nonatomic, strong) UILabel *titleView;
 @property (nonatomic, strong) UILabel *titleCnView;
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIView *shadowView;
+@property (nonatomic, strong) UILabel *readCountLbl;
+@property (nonatomic, strong) UILabel *timeLbl;
+
+
 @end
 
 @implementation XSYDetailCell
@@ -27,7 +32,8 @@
         [self.iconView addSubview:self.shadowView];
         [self.shadowView addSubview:self.titleView];
         [self.shadowView addSubview:self.titleCnView];
-        
+        [self.shadowView addSubview:self.readCountLbl];
+        [self.shadowView addSubview:self.timeLbl];
         [self addConstraints];
     }
     return self;
@@ -58,9 +64,15 @@
         make.trailing.equalTo(self.contentView).offset(-20);
     }];
     
-    
-   
+    [self.readCountLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.shadowView).offset(-10);
+        make.bottom.equalTo(self.timeLbl.mas_top).offset(-5);
+    }];
 
+    [self.timeLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.trailing.equalTo(self.readCountLbl);
+        make.bottom.equalTo(self.shadowView).offset(-5);
+    }];
 }
 
 
@@ -69,7 +81,8 @@
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.Pic] placeholderImage:[UIImage imageNamed:@"placeHolderImage"]];
     self.titleView.text = model.Title;
     self.titleCnView.text = model.Title_cn;
-
+    self.readCountLbl.text = [NSString stringWithFormat:@"%@次播放",model.ReadCount];
+    self.timeLbl.text = model.CreatTime;
 }
 
 
@@ -77,7 +90,7 @@
 
 - (UILabel *)titleView{
     if (_titleView == nil) {
-        _titleView = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:16]];
+        _titleView = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:18]];
         _titleView.textAlignment = NSTextAlignmentCenter;
     }
     return _titleView;
@@ -85,7 +98,7 @@
 
 - (UILabel *)titleCnView{
     if (_titleCnView == nil) {
-        _titleCnView = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:13]];
+        _titleCnView = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont boldSystemFontOfSize:15]];
         _titleCnView.textAlignment = NSTextAlignmentCenter;
     }
     return _titleCnView;
@@ -108,4 +121,17 @@
     return _shadowView;
 }
 
+- (UILabel *)readCountLbl{
+    if (_readCountLbl == nil) {
+        _readCountLbl = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:10]];
+    }
+    return _readCountLbl;
+}
+
+- (UILabel *)timeLbl{
+    if (_timeLbl == nil) {
+        _timeLbl = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:10]];
+    }
+    return _timeLbl;
+}
 @end
