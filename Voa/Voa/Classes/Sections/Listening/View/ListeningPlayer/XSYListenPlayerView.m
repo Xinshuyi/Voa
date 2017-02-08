@@ -13,20 +13,25 @@
 #import "XSYNetworking.h"
 #import "XSYDetailModel.h"
 #import <SVProgressHUD.h>
+#import <FSAudioStream.h>
+#import "XSYListeningContentCell.h"
 
 static NSString *cellID = @"contentView";
 static XSYListenPlayerView *_playerView;
 
-@interface XSYListenPlayerView ()
-@property (nonatomic, strong) UIButton *pauseBtn;
+@interface XSYListenPlayerView ()<UITableViewDelegate, UITableViewDataSource>
+/** 播放器界面*/
+@property (nonatomic, strong) FSAudioStream *audioStream;
 @property (nonatomic, strong) UIButton *closeBtn;
 @property (nonatomic, strong) UIView *bottomBar;
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, strong) UIButton *ch_enBtn;
 @property (nonatomic, strong) UISlider *slider;
+
+/** 其他*/
+@property (nonatomic, strong) UIButton *pauseBtn;
 @property (nonatomic, strong) NSArray<XSYListeningContentModel *> *modelArr;
 @property (nonatomic, strong) UITableView *contentView;
-
 @property (nonatomic, assign) PlayerState playerState;
 @property (nonatomic, assign) ListeningPlayMode playMode;
 
@@ -53,7 +58,6 @@ static XSYListenPlayerView *_playerView;
         [_playerView.contentView addSubview:_playerView.ch_enBtn];
         [_playerView addSubview:_playerView.contentView];
         
-        
         [_playerView addConstraints];
     });
     return _playerView;
@@ -63,10 +67,22 @@ static XSYListenPlayerView *_playerView;
 - (void)loadContenData{
     [XSYNetworking getVoaListeningContentWithVoaid:self.model.VoaId successBlock:^(NSArray<XSYListeningContentModel *> *response) {
         self.modelArr = response;
+        [self.contentView reloadData];
         NSLog(@"%@",self.modelArr);
     } failureBlock:^(NSError *error) {
         [SVProgressHUD showErrorWithStatus:@"网络不佳"];
     }];
+}
+
+#pragma mark - setModel -
+- (void)setModel:(XSYDetailModel *)model{
+    _model = model;
+    // 加载音频
+    NSString *urlStr = [NSString stringWithFormat:@"http://static.iyuba.com/sounds/voa%@", self.model.Sound];
+    self.audioStream.url = [NSURL URLWithString:urlStr];
+    [self.audioStream play];
+    // 加载中英文内容
+    [self loadContenData];
 }
 
 #pragma mark - main method -
@@ -137,10 +153,19 @@ static XSYListenPlayerView *_playerView;
 - (void)clickPlayBtn:(UIButton *)playBtn{
     playBtn.selected = !playBtn.selected;
     self.playMode = playBtn.selected == YES ? ListeningPausing : ListeningPlaying;
-//    if (self.playMode == ListeningPlaying) {
-//        [self loadContenData];
-//    }
+    [self.audioStream pause];
     NSLog(@"%s",__func__);
+}
+
+#pragma mark - tableview datasoure and delegate -
+- (NSInteger)tableView:(UITableView *)tableView numberOfRowsInSection:(NSInteger)section{
+    return self.modelArr.count;
+}
+
+- (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
+    XSYListeningContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
+    cell.model = self.modelArr[indexPath.row];
+    return cell;
 }
 
 #pragma mark - gesture -
@@ -266,9 +291,31 @@ static XSYListenPlayerView *_playerView;
     if (_contentView == nil) {
         _contentView = [[UITableView alloc] initWithFrame:CGRectZero style:UITableViewStylePlain];
         _contentView.backgroundColor = [UIColor clearColor];
+        // 自定义行高
+        _contentView.estimatedRowHeight = 2;
+        _contentView.rowHeight = UITableViewAutomaticDimension;
+        // datasource and delegate
+        _contentView.dataSource = self;
+        _contentView.delegate = self;
         // 注册
-        [_contentView registerClass:[UITableViewCell class] forCellReuseIdentifier:cellID];
+        [_contentView registerClass:[XSYListeningContentCell class] forCellReuseIdentifier:cellID];
     }
     return _contentView;
 }
+
+- (FSAudioStream *)audioStream{
+    if (_audioStream == nil) {
+        FSStreamConfiguration *configuration = [[FSStreamConfiguration alloc] init];
+        configuration.cacheEnabled = YES;
+        configuration.seekingFromCacheEnabled = YES;
+        // 设置缓存路径
+        NSString *path = [NSSearchPathForDirectoriesInDomains(NSCachesDirectory, NSUserDomainMask, YES) lastObject];
+        configuration.cacheDirectory = path;
+        
+        _audioStream = [[FSAudioStream alloc] initWithConfiguration:configuration];
+        [_audioStream setVolume:0.5];//设置声音
+    }
+    return _audioStream;
+}
+
 @end
