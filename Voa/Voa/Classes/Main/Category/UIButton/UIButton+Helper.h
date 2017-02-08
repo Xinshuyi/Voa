@@ -20,4 +20,6 @@
 
 + (UIButton *)buttonWithTarget:(id)target action:(SEL)action image:(NSString *)image title:(NSString *)title titleFont:(UIFont *)font titleColor:(UIColor *)color backgroundColor:(UIColor *)backgroundColor;
 
++ (UIButton *)buttonWithTarget:(id)target action:(SEL)action image:(NSString *)backgroundImage selectBackgroundImage:(NSString *)selectBackgroundImage;
+
 @end

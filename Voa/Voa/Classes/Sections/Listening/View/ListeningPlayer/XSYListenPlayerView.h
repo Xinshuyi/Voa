@@ -8,22 +8,25 @@
 
 #import <UIKit/UIKit.h>
 
+@class XSYDetailModel;
 @interface XSYListenPlayerView : UIView
+
+@property (nonatomic, strong) XSYDetailModel *model;
 
 /**
  关闭了再打开
  */
-+ (instancetype)restartPlayerView;
++ (instancetype)startPlayerView;
 
 /**
  暂停了再打开
  */
-- (void)startPlayerView;
+- (void)morePlayerView;
 
 /**
- 暂停
+ 退回播放器界面但是没有退出
  */
-- (void)pausePlayerView;
+- (void)backPlayerView;
 
 
 /**

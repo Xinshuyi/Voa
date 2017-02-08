@@ -16,4 +16,6 @@
 @property (nonatomic, copy) NSString *ReadCount;
 @property (nonatomic, copy) NSString *CreatTime;
 @property (nonatomic, copy) NSString *Sound;
+@property (nonatomic, copy) NSString *VoaId;
+
 @end

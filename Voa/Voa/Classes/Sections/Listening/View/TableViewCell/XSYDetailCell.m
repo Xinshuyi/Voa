@@ -65,12 +65,12 @@
     }];
     
     [self.readCountLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.shadowView).offset(-10);
+        make.leading.equalTo(self.shadowView).offset(10);
         make.bottom.equalTo(self.timeLbl.mas_top).offset(-5);
     }];
 
     [self.timeLbl mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.trailing.equalTo(self.readCountLbl);
+        make.leading.equalTo(self.readCountLbl);
         make.bottom.equalTo(self.shadowView).offset(-5);
     }];
 }

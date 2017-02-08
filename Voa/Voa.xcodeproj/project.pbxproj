@@ -11,6 +11,7 @@
 		226475BB1E45FE770070959A /* ListenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475BA1E45FE770070959A /* ListenController.m */; };
 		226475BE1E45FE8B0070959A /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475BD1E45FE8B0070959A /* MineController.m */; };
 		226475C11E45FE9E0070959A /* VideoController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475C01E45FE9E0070959A /* VideoController.m */; };
+		22CF1DC51E4B55FB0001E213 /* XSYListeningContentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22CF1DC41E4B55FB0001E213 /* XSYListeningContentModel.m */; };
 		22D3D2301E44456400F300EB /* main.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D22F1E44456400F300EB /* main.m */; };
 		22D3D2331E44456400F300EB /* AppDelegate.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2321E44456400F300EB /* AppDelegate.m */; };
 		22D3D23B1E44456400F300EB /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = 22D3D23A1E44456400F300EB /* Assets.xcassets */; };
@@ -58,6 +59,8 @@
 		226475BF1E45FE9E0070959A /* VideoController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = VideoController.h; sourceTree = "<group>"; };
 		226475C01E45FE9E0070959A /* VideoController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = VideoController.m; sourceTree = "<group>"; };
 		226475C21E4619470070959A /* PrefixHeader.pch */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = PrefixHeader.pch; sourceTree = "<group>"; };
+		22CF1DC31E4B55FB0001E213 /* XSYListeningContentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYListeningContentModel.h; sourceTree = "<group>"; };
+		22CF1DC41E4B55FB0001E213 /* XSYListeningContentModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYListeningContentModel.m; sourceTree = "<group>"; };
 		22D3D22B1E44456400F300EB /* Voa.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = Voa.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		22D3D22F1E44456400F300EB /* main.m */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.objc; path = main.m; sourceTree = "<group>"; };
 		22D3D2311E44456400F300EB /* AppDelegate.h */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.c.h; path = AppDelegate.h; sourceTree = "<group>"; };
@@ -304,6 +307,8 @@
 				22E659341E48237400789F93 /* XSYParentModel.m */,
 				22E659391E48698000789F93 /* XSYDetailModel.h */,
 				22E6593A1E48698000789F93 /* XSYDetailModel.m */,
+				22CF1DC31E4B55FB0001E213 /* XSYListeningContentModel.h */,
+				22CF1DC41E4B55FB0001E213 /* XSYListeningContentModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -668,6 +673,7 @@
 				22E659601E4A04B300789F93 /* XSYDetailCell.m in Sources */,
 				22D3D2301E44456400F300EB /* main.m in Sources */,
 				22D3D28C1E44B25E00F300EB /* UILabel+CZAddition.m in Sources */,
+				22CF1DC51E4B55FB0001E213 /* XSYListeningContentModel.m in Sources */,
 				22D3D25D1E44497000F300EB /* TabbarController.m in Sources */,
 				226475BE1E45FE8B0070959A /* MineController.m in Sources */,
 				22E659411E48ACA700789F93 /* XSYNetworking.m in Sources */,

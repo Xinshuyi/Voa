@@ -10,6 +10,7 @@
 #import <MJExtension.h>
 #import "NetworkingTools.h"
 #import "XSYDetailModel.h"
+#import "XSYListeningContentModel.h"
 
 @implementation XSYNetworking
 
@@ -73,4 +74,21 @@
     }
 }
 
++ (void)getVoaListeningContentWithVoaid:(NSString *)voaid successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    NSString *urlString = @"http://apps.iyuba.com/iyuba/textNewApi.jsp";
+    NSDictionary *para = @{@"voaid":voaid,@"format":@"json"};
+    [[NetworkingTools shared] request:GET urlString:urlString parameters:para completeBlock:^(id response, NSError *error) {
+        if (error == nil) {
+            NSArray *array = response[@"data"];
+            NSArray *modelArr = [XSYListeningContentModel mj_objectArrayWithKeyValuesArray:array];
+            if (successBlock) {
+                successBlock(modelArr);
+            }
+        }else{
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }
+    }];
+}
 @end

@@ -62,4 +62,12 @@
 
 }
 
++ (UIButton *)buttonWithTarget:(id)target action:(SEL)action image:(NSString *)backgroundImage selectBackgroundImage:(NSString *)selectBackgroundImage{
+    UIButton *btn = [[UIButton alloc] init];
+    [btn setBackgroundImage:[UIImage imageNamed:backgroundImage] forState:UIControlStateNormal];
+    [btn setBackgroundImage:[UIImage imageNamed:selectBackgroundImage] forState:UIControlStateSelected];
+    [btn addTarget:target action:action forControlEvents:UIControlEventTouchUpInside];
+    return btn;
+}
+
 @end

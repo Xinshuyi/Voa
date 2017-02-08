@@ -40,4 +40,11 @@ typedef void(^FailureBlock)(NSError *error);
                          failureBlock:(FailureBlock)failureBlock;
 
 
+
+/**
+ 中文整合英文
+ */
++ (void)getVoaListeningContentWithVoaid:(NSString *)voaid
+                    successBlock:(SuccessBlock)successBlock
+                    failureBlock:(FailureBlock)failureBlock;
 @end

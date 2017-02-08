@@ -10,10 +10,22 @@ typedef NS_ENUM(NSUInteger, SpeedValue) {
     NormalSpeed,
     LowSpeed
 };
+
+typedef NS_ENUM(NSUInteger, PlayerState) {
+    Back,
+    More
+};
+
+typedef NS_ENUM(NSUInteger, ListeningPlayMode) {
+    ListeningPlaying,
+    ListeningPausing,
+    ListeningStopping
+};
 #ifndef PrefixHeader_pch
 #define PrefixHeader_pch
 #define topViewButtonNum 6
 #define mainColor [UIColor colorWithRed:108 / 255.0 green:184 / 255.0 blue:230 / 255.0 alpha:1.0]
+#define playViewGray [UIColor colorWithRed:103 / 255.0 green:103 / 255.0 blue:103 / 255.0 alpha:1.0]
 #define screenHeight [UIScreen mainScreen].bounds.size.height
 #define screenWidth [UIScreen mainScreen].bounds.size.width
 #define ScreenWidthScale 1.3
