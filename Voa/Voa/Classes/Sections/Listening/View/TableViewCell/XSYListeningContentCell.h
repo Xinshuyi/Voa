@@ -14,4 +14,6 @@
 
 @property (nonatomic, strong) XSYListeningContentModel *model;
 
+@property (nonatomic, assign) BOOL isEnglishOnly;
+
 @end

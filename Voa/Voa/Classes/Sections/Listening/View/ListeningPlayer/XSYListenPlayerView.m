@@ -15,6 +15,7 @@
 #import <SVProgressHUD.h>
 #import <FSAudioStream.h>
 #import "XSYListeningContentCell.h"
+#import "UILabel+Helper.h"
 
 static NSString *cellID = @"contentView";
 static XSYListenPlayerView *_playerView;
@@ -27,14 +28,23 @@ static XSYListenPlayerView *_playerView;
 @property (nonatomic, strong) UIButton *playBtn;
 @property (nonatomic, strong) UIButton *ch_enBtn;
 @property (nonatomic, strong) UISlider *slider;
-
+@property (nonatomic, strong) UILabel *startLbl;
+@property (nonatomic, strong) UILabel *endLbl;
 /** 其他*/
 @property (nonatomic, strong) UIButton *pauseBtn;
 @property (nonatomic, strong) NSArray<XSYListeningContentModel *> *modelArr;
+@property (nonatomic, strong) NSTimer *timer;
+
+
 @property (nonatomic, strong) UITableView *contentView;
+@property (nonatomic, strong) NSIndexPath *NewIndexPath;
+@property (nonatomic, strong) NSIndexPath *pastIndexPath;
+@property (nonatomic, assign) NSInteger lastIndex;
+
+
+
 @property (nonatomic, assign) PlayerState playerState;
 @property (nonatomic, assign) ListeningPlayMode playMode;
-
 @end
 
 @implementation XSYListenPlayerView
@@ -42,6 +52,9 @@ static XSYListenPlayerView *_playerView;
     static dispatch_once_t onceToken;
     dispatch_once(&onceToken, ^{
         _playerView = [[XSYListenPlayerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
+        // 增加左边手势
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:_playerView action:@selector(tapLeft:)];
+        [_playerView addGestureRecognizer:tap];
         // 增加右边手势
         UISwipeGestureRecognizer *rightSwipe = [[UISwipeGestureRecognizer alloc] initWithTarget:_playerView action:@selector(rightSwipe:)];
         [_playerView addGestureRecognizer:rightSwipe];
@@ -57,7 +70,8 @@ static XSYListenPlayerView *_playerView;
         [_playerView.bottomBar addSubview:_playerView.playBtn];
         [_playerView.contentView addSubview:_playerView.ch_enBtn];
         [_playerView addSubview:_playerView.contentView];
-        
+        [_playerView addSubview:_playerView.startLbl];
+        [_playerView addSubview:_playerView.endLbl];
         [_playerView addConstraints];
     });
     return _playerView;
@@ -74,17 +88,6 @@ static XSYListenPlayerView *_playerView;
     }];
 }
 
-#pragma mark - setModel -
-- (void)setModel:(XSYDetailModel *)model{
-    _model = model;
-    // 加载音频
-    NSString *urlStr = [NSString stringWithFormat:@"http://static.iyuba.com/sounds/voa%@", self.model.Sound];
-    self.audioStream.url = [NSURL URLWithString:urlStr];
-    [self.audioStream play];
-    // 加载中英文内容
-    [self loadContenData];
-}
-
 #pragma mark - main method -
 + (instancetype)startPlayerView{
     XSYListenPlayerView *playerView = [XSYListenPlayerView shared];
@@ -97,6 +100,114 @@ static XSYListenPlayerView *_playerView;
         playerView.playerState = More;
     }];
     return playerView;
+}
+
+#pragma mark - setModel -
+- (void)setModel:(XSYDetailModel *)model{
+    _model = model;
+    // 定时器清零
+    if (self.timer != nil) {
+        [self stopTimer];
+    }
+    [self startTimer];
+    // 加载音频
+    NSString *urlStr = [NSString stringWithFormat:@"http://static.iyuba.com/sounds/voa%@", self.model.Sound];
+    self.audioStream.url = [NSURL URLWithString:urlStr];
+    [self.audioStream play];
+    // 监听播放器状态改变
+    [self playStatusChanged];
+    self.lastIndex = 0;
+    
+
+    // 加载中英文内容
+    [self loadContenData];
+}
+
+- (void)playStatusChanged{
+    __weak XSYListenPlayerView *weakSelf = self;
+    
+    self.audioStream.onStateChange = ^(FSAudioStreamState state){
+        switch (state) {
+            case kFsAudioStreamRetrievingURL:
+                
+                break;
+            case kFsAudioStreamPlaying:// 播放中
+            {
+                // 重启定时器
+                [weakSelf startTimer];
+                // slidermax value
+                FSStreamPosition position = weakSelf.audioStream.duration;
+                weakSelf.slider.maximumValue = (float)(position.minute * 60 + position.second);
+                weakSelf.endLbl.text = [NSString stringWithFormat:@"%d:%02d",position.minute, position.second];
+                NSLog(@"totalTime%f",weakSelf.slider.maximumValue);
+            }
+            case kFsAudioStreamBuffering:// 缓冲中
+            {
+            }
+                break;
+            case kFsAudioStreamSeeking:// 跳到指定位置中
+                break;
+            case kFsAudioStreamPaused:// 暂停
+                
+                break;
+            case kFsAudioStreamStopped:
+                break;
+            case kFsAudioStreamFailed:
+                
+                break;
+            case kFsAudioStreamRetryingStarted:
+                //                    [MBProgressHUD showError:@"正在尝试重练"];
+                break;
+            default:
+                break;
+        }
+    };
+    
+}
+
+#pragma mark - timer -
+- (void)startTimer{
+    self.timer = [NSTimer scheduledTimerWithTimeInterval:0.5 target:self selector:@selector(handleTimer) userInfo:nil repeats:YES];
+    [[NSRunLoop mainRunLoop] addTimer:self.timer forMode:NSRunLoopCommonModes];
+}
+
+- (void)stopTimer{
+    [self.timer invalidate];
+    self.timer = nil;
+}
+
+- (void)handleTimer{
+    FSStreamPosition position = self.audioStream.currentTimePlayed;
+    self.slider.value = (float)(position.minute * 60 + position.second);
+    NSInteger rightNum = [self selectRightNum:self.slider.value];
+    self.NewIndexPath = [NSIndexPath indexPathForRow:rightNum inSection:0];
+    self.startLbl.text = [NSString stringWithFormat:@"%d:%02d",position.minute,position.second];
+    if (self.modelArr != nil) {
+        [self.contentView selectRowAtIndexPath:self.NewIndexPath animated:YES scrollPosition:UITableViewScrollPositionMiddle];
+    }
+    NSLog(@"当前时间：%f",self.slider.value);
+}
+
+#pragma mark - 找到正确时间 -
+- (NSInteger)selectRightNum:(CGFloat)value{
+    if (self.modelArr != nil) {
+        for (NSInteger i = 0; i < self.modelArr.count; i++) {
+            XSYListeningContentModel *model = self.modelArr[i];
+            if (i + 1 < self.modelArr.count) {
+                XSYListeningContentModel *nextModel = self.modelArr[i + 1];
+                if (nextModel.Timing.floatValue >= self.slider.value && model.Timing.intValue <= self.slider.value) {
+                    self.lastIndex = i;
+                    return i;
+                }
+            }
+        }
+        if (value < self.modelArr[0].Timing.floatValue) {
+            return 0;
+        }else{
+            return self.modelArr.count - 1;
+        }
+    }
+    return 0;
 }
 
 - (void)morePlayerView{
@@ -140,14 +251,19 @@ static XSYListenPlayerView *_playerView;
 
 - (void)clickCh_enBtn:(UIButton *)ch_enBtn{
     ch_enBtn.selected = !ch_enBtn.selected;
+    [self.contentView reloadData];
 }
 
 - (void)clickCloseBtn:(UIButton *)closeBtn{
     [self closePlayerView];
+    [self.audioStream stop];
 }
 
 - (void)sliderChange:(UISlider *)slider{
     NSLog(@"%s",__func__);
+    FSStreamPosition position = {0};
+    position.position = slider.value / slider.maximumValue;
+    [self.audioStream seekToPosition:position];
 }
 
 - (void)clickPlayBtn:(UIButton *)playBtn{
@@ -165,6 +281,7 @@ static XSYListenPlayerView *_playerView;
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     XSYListeningContentCell *cell = [tableView dequeueReusableCellWithIdentifier:cellID forIndexPath:indexPath];
     cell.model = self.modelArr[indexPath.row];
+    cell.isEnglishOnly = !self.ch_enBtn.isSelected;
     return cell;
 }
 
@@ -177,6 +294,15 @@ static XSYListenPlayerView *_playerView;
     }completion:^(BOOL finished) {
         self.playerState = Back;
         self.pauseBtn.selected = YES;
+    }];
+}
+
+- (void)tapLeft:(UITapGestureRecognizer *)tap{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = [UIScreen mainScreen].bounds;
+    }completion:^(BOOL finished) {
+        self.playerState = More;
+        self.pauseBtn.selected = NO;
     }];
 }
 
@@ -206,8 +332,8 @@ static XSYListenPlayerView *_playerView;
     }];
     
     [self.slider mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.bottomBar).offset(20);
-        make.trailing.equalTo(self.bottomBar).offset(-20);
+        make.leading.equalTo(self.startLbl.mas_trailing).offset(1);
+        make.trailing.equalTo(self.endLbl.mas_leading).offset(-1);
         make.top.equalTo(self.bottomBar).offset(10);
         make.height.mas_equalTo(20);
     }];
@@ -229,6 +355,16 @@ static XSYListenPlayerView *_playerView;
         make.trailing.equalTo(self.mas_trailing).offset(-10);
         make.top.equalTo(self.pauseBtn.mas_bottom).offset(10);
         make.bottom.equalTo(self.bottomBar.mas_top).offset(-10);
+    }];
+    
+    [self.startLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.slider);
+        make.leading.equalTo(self).offset(6);
+    }];
+    
+    [self.endLbl mas_makeConstraints:^(MASConstraintMaker *make) {
+        make.centerY.equalTo(self.slider);
+        make.trailing.equalTo(self).offset(-6);
     }];
 }
 
@@ -278,7 +414,7 @@ static XSYListenPlayerView *_playerView;
 
 - (UIButton *)ch_enBtn{
     if (_ch_enBtn == nil) {
-        _ch_enBtn = [UIButton buttonWithTarget:self action:@selector(clickCh_enBtn:) image:@"English" selectBackgroundImage:@"Ch_En"];
+        _ch_enBtn = [UIButton buttonWithTarget:self action:@selector(clickCh_enBtn:) image:@"Ch_En" selectBackgroundImage:@"English"];
         [_ch_enBtn setBackgroundColor:[UIColor clearColor]];
         // 加个手势
         UIPanGestureRecognizer *pan = [[UIPanGestureRecognizer alloc] initWithTarget:self action:@selector(ch_enBtnPan:)];
@@ -299,6 +435,7 @@ static XSYListenPlayerView *_playerView;
         _contentView.delegate = self;
         // 注册
         [_contentView registerClass:[XSYListeningContentCell class] forCellReuseIdentifier:cellID];
+        _contentView.separatorStyle = UITableViewCellSeparatorStyleNone;
     }
     return _contentView;
 }
@@ -318,4 +455,17 @@ static XSYListenPlayerView *_playerView;
     return _audioStream;
 }
 
+- (UILabel *)startLbl{
+    if (_startLbl == nil) {
+        _startLbl = [UILabel labelWithtextColor:playViewGray font:[UIFont systemFontOfSize:11]];
+    }
+    return _startLbl;
+}
+
+- (UILabel *)endLbl{
+    if (_endLbl == nil) {
+        _endLbl = [UILabel labelWithtextColor:playViewGray font:[UIFont systemFontOfSize:11]];
+    }
+    return _endLbl;
+}
 @end

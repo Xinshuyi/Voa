@@ -23,7 +23,6 @@
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
         [self.contentView addSubview:self.SentenceLbl];
         [self.contentView addSubview:self.sentence_cnLbl];
-        
         [self addConstraints];
     }
     return self;
@@ -66,4 +65,14 @@
     self.SentenceLbl.text = model.Sentence;
     self.sentence_cnLbl.text = model.sentence_cn;
 }
+
+- (void)setIsEnglishOnly:(BOOL)isEnglishOnly{
+    _isEnglishOnly = isEnglishOnly;
+    if (_isEnglishOnly) {
+        self.sentence_cnLbl.hidden = YES;
+    }else{
+        self.sentence_cnLbl.hidden = NO;
+    }
+}
+
 @end

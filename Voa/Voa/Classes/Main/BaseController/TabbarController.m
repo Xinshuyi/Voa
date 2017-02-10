@@ -65,7 +65,7 @@
             if (index == tabbarIndex) {
                 for (UIView *v in subview.subviews) {
                     if ([v isKindOfClass:NSClassFromString(@"UITabBarSwappableImageView")]) {
-                        v.transform = CGAffineTransformMakeScale(0.4, 0.4);
+                        v.transform = CGAffineTransformMakeScale(0.6, 0.6);
                         // 做动画
                         [UIView animateWithDuration:0.5 animations:^{
                             v.transform = CGAffineTransformIdentity;
