@@ -8,7 +8,7 @@
 
 #import <Foundation/Foundation.h>
 
-@interface XSYDetailModel : NSObject
+@interface XSYDetailModel : NSObject<NSCoding>
 @property (nonatomic, copy) NSString *Title;
 @property (nonatomic, copy) NSString *Title_cn;
 @property (nonatomic, copy) NSString *Pic;

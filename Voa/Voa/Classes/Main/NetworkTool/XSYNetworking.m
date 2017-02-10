@@ -11,16 +11,30 @@
 #import "NetworkingTools.h"
 #import "XSYDetailModel.h"
 #import "XSYListeningContentModel.h"
+#import "XSYVoaCacheTool.h"
 
 @implementation XSYNetworking
 
 + (void)getVoaNormalSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleChangSuApi2.jsp";
     NSDictionary *para = @{@"maxid":maxID, @"type":@"iOS",@"format":@"json",@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
+    AFNetworkReachabilityManager *manger = [AFNetworkReachabilityManager sharedManager];
+    if (manger.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+    
+        // 从数据库获取
+        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArray];
+        if (successBlock) {
+            successBlock(dataArray);
+        }
+        return;
+    }
+
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
         if (error == nil) {
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
+            // 存储到数据库
+            [XSYVoaCacheTool saveVoaModelArray:modelArr];
             if (successBlock) {
                 successBlock(modelArr);
             }
@@ -35,10 +49,23 @@
 + (void)getVoaLowSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleApi2.jsp";
     NSDictionary *para = @{@"type":@"iOS",@"format":@"json",@"maxid":maxID,@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
+    AFNetworkReachabilityManager *manger = [AFNetworkReachabilityManager sharedManager];
+    if (manger.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+        
+        // 从数据库获取
+        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArray];
+        if (successBlock) {
+            successBlock(dataArray);
+        }
+        return;
+    }
+
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
         if (error == nil) {
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
+            
+            [XSYVoaCacheTool saveVoaModelArray:modelArr];
             if (successBlock) {
                 successBlock(modelArr);
             }

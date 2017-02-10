@@ -14,6 +14,9 @@ PODS:
   - AFNetworking/Serialization (3.1.0)
   - AFNetworking/UIKit (3.1.0):
     - AFNetworking/NSURLSession
+  - FMDB (2.6.2):
+    - FMDB/standard (= 2.6.2)
+  - FMDB/standard (2.6.2)
   - FreeStreamer (3.6.3):
     - Reachability (~> 3.0)
   - Masonry (1.0.2)
@@ -27,6 +30,7 @@ PODS:
 
 DEPENDENCIES:
   - AFNetworking
+  - FMDB
   - FreeStreamer
   - Masonry
   - MJExtension
@@ -36,6 +40,7 @@ DEPENDENCIES:
 
 SPEC CHECKSUMS:
   AFNetworking: 5e0e199f73d8626b11e79750991f5d173d1f8b67
+  FMDB: 854a0341b4726e53276f2a8996f06f1b80f9259a
   FreeStreamer: cc73d77f3adc114899c82b0d0a0dc16e077ec65d
   Masonry: 7c429b56da9d4ee0bbb3ed77a5ea710d6a5df39e
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
@@ -44,6 +49,6 @@ SPEC CHECKSUMS:
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: c33fd0394c663cd798b79d82630a474994ba0a34
+PODFILE CHECKSUM: 74f2d9e5eb0e428be36d7865b1d0bcc0000ec2e0
 
 COCOAPODS: 1.1.1
