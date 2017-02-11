@@ -95,7 +95,12 @@ static NSString *detailCellID = @"detailCellID";
 
 - (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
-    XSYListenPlayerView *playerView = [XSYListenPlayerView startPlayerView];
-    playerView.model = self.modelArr[indexPath.row];
+    XSYDetailModel *model = self.modelArr[indexPath.row];
+    if (model.Sound != nil) {
+        XSYListenPlayerView *playerView = [XSYListenPlayerView startPlayerView];
+        playerView.model = model;
+    }else{
+        [SVProgressHUD showErrorWithStatus:@"请检查网络"];
+    }
 }
 @end

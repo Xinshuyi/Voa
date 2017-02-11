@@ -12,17 +12,23 @@
 #import "XSYDetailModel.h"
 #import "XSYListeningContentModel.h"
 #import "XSYVoaCacheTool.h"
+#import <RealReachability.h>
 
 @implementation XSYNetworking
 
 + (void)getVoaNormalSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleChangSuApi2.jsp";
-    NSDictionary *para = @{@"maxid":maxID, @"type":@"iOS",@"format":@"json",@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
-    AFNetworkReachabilityManager *manger = [AFNetworkReachabilityManager sharedManager];
-    if (manger.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
+    NSDictionary *para = @{@"maxid":maxID, @"type":@"iOS",@"format":@"json",@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"10",@"parentID":parentID};
+    ReachabilityStatus status = [GLobalRealReachability
+                                 currentReachabilityStatus];
+    if (status == RealStatusNotReachable) {
     
         // 从数据库获取
-        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArray];
+        if ([parentID isEqualToString:@"0"]) {
+            parentID = @"100";
+        }
+
+        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArrayWithParentID:parentID];
         if (successBlock) {
             successBlock(dataArray);
         }
@@ -33,8 +39,16 @@
         if (error == nil) {
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
+            for (XSYDetailModel *model in modelArr) {
+                model.parentID = parentID;
+            }
+            for (XSYDetailModel *model in modelArr) {
+                model.parentID = [parentID  isEqualToString: @"0"] ? @"100" : parentID;
+            }
             // 存储到数据库
-            [XSYVoaCacheTool saveVoaModelArray:modelArr];
+            if (page == 1) {
+                [XSYVoaCacheTool saveVoaModelArrayWithArray:modelArr WithParentID:parentID];
+            }
             if (successBlock) {
                 successBlock(modelArr);
             }
@@ -48,12 +62,12 @@
 
 + (void)getVoaLowSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleApi2.jsp";
-    NSDictionary *para = @{@"type":@"iOS",@"format":@"json",@"maxid":maxID,@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"20",@"parentID":parentID};
-    AFNetworkReachabilityManager *manger = [AFNetworkReachabilityManager sharedManager];
-    if (manger.networkReachabilityStatus == AFNetworkReachabilityStatusNotReachable) {
-        
+    NSDictionary *para = @{@"type":@"iOS",@"format":@"json",@"maxid":maxID,@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"10",@"parentID":parentID};
+    ReachabilityStatus status = [GLobalRealReachability
+                                 currentReachabilityStatus];
+    if (status == RealStatusNotReachable) {
         // 从数据库获取
-        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArray];
+        NSArray *dataArray = [XSYVoaCacheTool getVoaModelArrayWithParentID:parentID];
         if (successBlock) {
             successBlock(dataArray);
         }
@@ -65,7 +79,10 @@
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
             
-            [XSYVoaCacheTool saveVoaModelArray:modelArr];
+            // 存储到数据库
+            if (page == 1) {
+                [XSYVoaCacheTool saveVoaModelArrayWithArray:modelArr WithParentID:parentID];
+            }
             if (successBlock) {
                 successBlock(modelArr);
             }

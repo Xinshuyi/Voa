@@ -10,8 +10,8 @@
 
 @interface XSYVoaCacheTool : NSObject
 
-+ (NSArray *)getVoaModelArray;
++ (NSArray *)getVoaModelArrayWithParentID:(NSString *)parentID;
 
-+ (void)saveVoaModelArray:(NSArray *)voaModelArray;
++ (void)saveVoaModelArrayWithArray:(NSArray *)voaModelArray WithParentID:(NSString *)parentID;
 
 @end

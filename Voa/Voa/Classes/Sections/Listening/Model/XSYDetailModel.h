@@ -17,5 +17,6 @@
 @property (nonatomic, copy) NSString *CreatTime;
 @property (nonatomic, copy) NSString *Sound;
 @property (nonatomic, copy) NSString *VoaId;
+@property (nonatomic, copy) NSString *parentID;
 
 @end

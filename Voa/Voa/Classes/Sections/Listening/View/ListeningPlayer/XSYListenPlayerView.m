@@ -49,8 +49,7 @@ static XSYListenPlayerView *_playerView;
 
 @implementation XSYListenPlayerView
 + (instancetype)shared{
-    static dispatch_once_t onceToken;
-    dispatch_once(&onceToken, ^{
+    if(_playerView == nil){
         _playerView = [[XSYListenPlayerView alloc] initWithFrame:[UIScreen mainScreen].bounds];
         // 增加左边手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:_playerView action:@selector(tapLeft:)];
@@ -73,7 +72,7 @@ static XSYListenPlayerView *_playerView;
         [_playerView addSubview:_playerView.startLbl];
         [_playerView addSubview:_playerView.endLbl];
         [_playerView addConstraints];
-    });
+    }
     return _playerView;
 }
 
@@ -102,25 +101,54 @@ static XSYListenPlayerView *_playerView;
     return playerView;
 }
 
+- (void)morePlayerView{
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = [UIScreen mainScreen].bounds;
+    }completion:^(BOOL finished) {
+        self.playerState = More;
+    }];
+}
+
+- (void)backPlayerView{
+    CGRect newFrame = self.frame;
+    newFrame.origin.x = screenWidth * 0.9;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = newFrame;
+    }completion:^(BOOL finished) {
+        self.playerState = Back;
+    }];
+}
+
+- (void)closePlayerView{
+    CGRect newFrame = self.frame;
+    newFrame.origin.x = screenWidth;
+    [UIView animateWithDuration:0.5 animations:^{
+        self.frame = newFrame;
+    } completion:^(BOOL finished) {
+        [self removeFromSuperview];
+        self.playMode = ListeningStopping;
+    }];
+}
+
 #pragma mark - setModel -
 - (void)setModel:(XSYDetailModel *)model{
     _model = model;
-    // 定时器清零
-    if (self.timer != nil) {
-        [self stopTimer];
+    if (model != nil) {
+        // 定时器清零
+        if (self.timer != nil) {
+            [self stopTimer];
+        }
+        [self startTimer];
+        // 加载音频
+        NSString *urlStr = [NSString stringWithFormat:@"http://static.iyuba.com/sounds/voa%@", self.model.Sound];
+        self.audioStream.url = [NSURL URLWithString:urlStr];
+        [self.audioStream play];
+        // 监听播放器状态改变
+        [self playStatusChanged];
+        self.lastIndex = 0;
+        // 加载中英文内容
+        [self loadContenData];
     }
-    [self startTimer];
-    // 加载音频
-    NSString *urlStr = [NSString stringWithFormat:@"http://static.iyuba.com/sounds/voa%@", self.model.Sound];
-    self.audioStream.url = [NSURL URLWithString:urlStr];
-    [self.audioStream play];
-    // 监听播放器状态改变
-    [self playStatusChanged];
-    self.lastIndex = 0;
-    
-
-    // 加载中英文内容
-    [self loadContenData];
 }
 
 - (void)playStatusChanged{
@@ -208,35 +236,6 @@ static XSYListenPlayerView *_playerView;
         }
     }
     return 0;
-}
-
-- (void)morePlayerView{
-    [UIView animateWithDuration:0.5 animations:^{
-        self.frame = [UIScreen mainScreen].bounds;
-    }completion:^(BOOL finished) {
-        self.playerState = More;
-    }];
-}
-
-- (void)backPlayerView{
-    CGRect newFrame = self.frame;
-    newFrame.origin.x = screenWidth * 0.9;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.frame = newFrame;
-    }completion:^(BOOL finished) {
-        self.playerState = Back;
-    }];
-}
-
-- (void)closePlayerView{
-    CGRect newFrame = self.frame;
-    newFrame.origin.x = screenWidth;
-    [UIView animateWithDuration:0.5 animations:^{
-        self.frame = newFrame;
-    } completion:^(BOOL finished) {
-        [self removeFromSuperview];
-        self.playMode = ListeningStopping;
-    }];
 }
 
 #pragma mark - clickBtn -

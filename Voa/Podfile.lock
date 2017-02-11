@@ -23,6 +23,11 @@ PODS:
   - MJExtension (3.0.13)
   - MJRefresh (3.1.12)
   - Reachability (3.2)
+  - RealReachability (1.1.8):
+    - RealReachability/Connection (= 1.1.8)
+    - RealReachability/Ping (= 1.1.8)
+  - RealReachability/Connection (1.1.8)
+  - RealReachability/Ping (1.1.8)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -35,6 +40,7 @@ DEPENDENCIES:
   - Masonry
   - MJExtension
   - MJRefresh
+  - RealReachability
   - SDWebImage
   - SVProgressHUD
 
@@ -46,9 +52,10 @@ SPEC CHECKSUMS:
   MJExtension: 5932755f451458eefa24239358817f8d291240c7
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
+  RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 74f2d9e5eb0e428be36d7865b1d0bcc0000ec2e0
+PODFILE CHECKSUM: 0692205dea3acf81812cdefd3bdff628ab2465d4
 
 COCOAPODS: 1.1.1
