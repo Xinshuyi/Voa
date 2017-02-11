@@ -24,6 +24,7 @@
     if (status == RealStatusNotReachable) {
     
         // 从数据库获取
+
         if ([parentID isEqualToString:@"0"]) {
             parentID = @"100";
         }
@@ -39,9 +40,6 @@
         if (error == nil) {
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYDetailModel mj_objectArrayWithKeyValuesArray:array];
-            for (XSYDetailModel *model in modelArr) {
-                model.parentID = parentID;
-            }
             for (XSYDetailModel *model in modelArr) {
                 model.parentID = [parentID  isEqualToString: @"0"] ? @"100" : parentID;
             }

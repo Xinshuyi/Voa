@@ -9,6 +9,7 @@
 #import "AppDelegate.h"
 #import "TabbarController.h"
 #import "DetailTableViewController.h"
+#import <RealReachability.h>
 @interface AppDelegate ()
 
 @end
@@ -22,6 +23,8 @@
     self.window = window;
     self.window.rootViewController = [[TabbarController alloc] init];
     [window makeKeyAndVisible];
+    
+    [GLobalRealReachability startNotifier];
     
     return YES;
 }

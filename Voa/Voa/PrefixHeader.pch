@@ -28,7 +28,7 @@ typedef NS_ENUM(NSUInteger, ListeningPlayMode) {
 #define playViewGray [UIColor colorWithRed:103 / 255.0 green:103 / 255.0 blue:103 / 255.0 alpha:1.0]
 #define screenHeight [UIScreen mainScreen].bounds.size.height
 #define screenWidth [UIScreen mainScreen].bounds.size.width
-#define ScreenWidthScale 1.3
+#define ScreenWidthScale 1.5
 #define TopViewHeight 35
 #define collectionViewHeight screenHeight - TopViewHeight - 64 - 44
 #ifdef DEBUG

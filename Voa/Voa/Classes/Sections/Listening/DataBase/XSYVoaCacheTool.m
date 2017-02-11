@@ -9,6 +9,8 @@
 #import "XSYVoaCacheTool.h"
 #import "FMDB.h"
 #import "XSYDetailModel.h"
+#import "FMDatabaseAdditions.h"
+
 
 @implementation XSYVoaCacheTool
 
@@ -22,14 +24,17 @@ static FMDatabase *_db;
     
     // 2.创表
     [_db executeUpdate:@"CREATE TABLE IF NOT EXISTS t_voa(id integer PRIMARY KEY, voaModel blob);"];
-//    // 删除记录
+    // 删除记录
 //    [_db executeUpdate:@"delete from t_voa;"];
+    NSUInteger count = [_db intForQuery:@"select count(*) from t_voa;"];
     
+    if (count > 0) return;
+        
     XSYDetailModel *model = [[XSYDetailModel alloc] init];
-    model.Title = @"djfjj";
+//    model.Title = @"djfjj";
     NSData *voaData = [NSKeyedArchiver archivedDataWithRootObject:model];
     for (int i = 0; i < 210; i++) {
-        BOOL res = [_db executeUpdateWithFormat:@"INSERT INTO t_voa(voaModel) VALUES (%@);", voaData];
+        [_db executeUpdateWithFormat:@"INSERT INTO t_voa(voaModel) VALUES (%@);", voaData];
     }
 }
 
@@ -78,7 +83,7 @@ static FMDatabase *_db;
 //        if (set == nil) {
 //            [_db executeUpdateWithFormat:@"INSERT INTO t_voa(voaModel) VALUES (%@);", voaData];
         // 有的话就更新
-       BOOL res = [_db executeUpdateWithFormat:@"update t_voa set voaModel = %@ where id =  %ld;",voaData,startID + i];
+    [_db executeUpdateWithFormat:@"update t_voa set voaModel = %@ where id =  %ld;",voaData,startID + i];
         i ++;
     }
 }
