@@ -7,6 +7,8 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */; };
+		2260E0AA1E4F487200BD6E2A /* XSYEssayPicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A91E4F487200BD6E2A /* XSYEssayPicModel.m */; };
 		226475B81E45FE5A0070959A /* EssayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475B71E45FE5A0070959A /* EssayController.m */; };
 		226475BB1E45FE770070959A /* ListenController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475BA1E45FE770070959A /* ListenController.m */; };
 		226475BE1E45FE8B0070959A /* MineController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475BD1E45FE8B0070959A /* MineController.m */; };
@@ -52,6 +54,10 @@
 /* Begin PBXFileReference section */
 		033B026325066D91307933FB /* Pods-Voa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voa/Pods-Voa.debug.xcconfig"; sourceTree = "<group>"; };
 		1AF2F8632C21FA12A2A3BBA6 /* Pods-Voa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voa/Pods-Voa.release.xcconfig"; sourceTree = "<group>"; };
+		2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayMainModel.h; sourceTree = "<group>"; };
+		2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayMainModel.m; sourceTree = "<group>"; };
+		2260E0A81E4F487200BD6E2A /* XSYEssayPicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayPicModel.h; sourceTree = "<group>"; };
+		2260E0A91E4F487200BD6E2A /* XSYEssayPicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayPicModel.m; sourceTree = "<group>"; };
 		226475B61E45FE5A0070959A /* EssayController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = EssayController.h; sourceTree = "<group>"; };
 		226475B71E45FE5A0070959A /* EssayController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = EssayController.m; sourceTree = "<group>"; };
 		226475B91E45FE770070959A /* ListenController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = ListenController.h; sourceTree = "<group>"; };
@@ -283,6 +289,10 @@
 		22D3D24D1E44489700F300EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */,
+				2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */,
+				2260E0A81E4F487200BD6E2A /* XSYEssayPicModel.h */,
+				2260E0A91E4F487200BD6E2A /* XSYEssayPicModel.m */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -673,6 +683,7 @@
 				22E659681E4A070200789F93 /* XSYListenPlayerView.m in Sources */,
 				22E659641E4A051600789F93 /* XSYListeningCell.m in Sources */,
 				22D3D28F1E44B25E00F300EB /* UIViewController+CZAddition.m in Sources */,
+				2260E0AA1E4F487200BD6E2A /* XSYEssayPicModel.m in Sources */,
 				22E6593B1E48698000789F93 /* XSYDetailModel.m in Sources */,
 				22D3D2881E44B25E00F300EB /* NSString+CZHash.m in Sources */,
 				22E6594A1E48C25600789F93 /* XSYRefreshHeader.m in Sources */,
@@ -687,6 +698,7 @@
 				22D3D2851E44B25E00F300EB /* NSAttributedString+CZAdditon.m in Sources */,
 				22D3D2891E44B25E00F300EB /* NSString+CZPath.m in Sources */,
 				22D3D2871E44B25E00F300EB /* NSString+CZBase64.m in Sources */,
+				2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */,
 				22E6593E1E48ABDA00789F93 /* NetworkingTools.m in Sources */,
 				22D3D28B1E44B25E00F300EB /* UIColor+CZAddition.m in Sources */,
 				22E659601E4A04B300789F93 /* XSYDetailCell.m in Sources */,

@@ -8,6 +8,6 @@
 
 #import <UIKit/UIKit.h>
 
-@interface EssayController : UIViewController
+@interface EssayController : UITableViewController
 
 @end
