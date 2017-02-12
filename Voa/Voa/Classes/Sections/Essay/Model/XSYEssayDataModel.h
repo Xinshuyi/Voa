@@ -7,9 +7,9 @@
 //
 
 #import <Foundation/Foundation.h>
-
-@interface XSYEssayPicModel : NSObject
+@class XSYEssayImageModel;
+@interface XSYEssayDataModel : NSObject
 @property (nonatomic, copy) NSString *text;
-@property (nonatomic, strong) NSDictionary *image;
+@property (nonatomic, strong) XSYEssayImageModel *image;
 
 @end

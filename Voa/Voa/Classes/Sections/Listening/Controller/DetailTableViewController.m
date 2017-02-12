@@ -21,6 +21,8 @@ static NSString *detailCellID = @"detailCellID";
 @interface DetailTableViewController ()
 @property (nonatomic, strong) NSMutableArray <XSYDetailModel *> *modelArr;
 @property (nonatomic, assign) NSInteger page;
+@property (nonatomic, strong) XSYListenPlayerView *playerView;
+
 @end
 
 @implementation DetailTableViewController
@@ -97,8 +99,9 @@ static NSString *detailCellID = @"detailCellID";
     [tableView deselectRowAtIndexPath:indexPath animated:YES];
     XSYDetailModel *model = self.modelArr[indexPath.row];
     if (model.Sound != nil) {
-        XSYListenPlayerView *playerView = [XSYListenPlayerView startPlayerView];
-        playerView.model = model;
+        self.playerView = [XSYListenPlayerView startPlayerView];
+        [[[UIApplication sharedApplication] keyWindow] addSubview:self.playerView];
+        self.playerView.model = model;
     }else{
         [SVProgressHUD showErrorWithStatus:@"请检查网络"];
     }

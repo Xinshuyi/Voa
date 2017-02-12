@@ -91,7 +91,6 @@ static XSYListenPlayerView *_playerView;
 + (instancetype)startPlayerView{
     XSYListenPlayerView *playerView = [XSYListenPlayerView shared];
     playerView.frame = CGRectMake(screenWidth, 0, screenWidth, screenHeight);
-    [[[UIApplication sharedApplication] keyWindow] addSubview:playerView];
     [UIView animateWithDuration:0.5 animations:^{
         playerView.frame = [UIScreen mainScreen].bounds;
     }completion:^(BOOL finished) {

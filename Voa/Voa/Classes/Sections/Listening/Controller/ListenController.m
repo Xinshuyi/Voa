@@ -12,10 +12,11 @@
 #import "CZAdditions.h"
 #import "XSYParentModel.h"
 #import "XSYListeningCell.h"
+#import "XSYListenPlayerView.h"
 
 static NSString *ListenCellID = @"ListenCellID";
 
-@interface ListenController ()<UICollectionViewDelegate, UICollectionViewDataSource, TopViewDelegate, UIScrollViewDelegate>
+@interface ListenController ()<UICollectionViewDelegate, UICollectionViewDataSource, TopViewDelegate>
 @property (nonatomic, strong) TopView *topView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) UISegmentedControl *segmentedControl;
@@ -30,7 +31,15 @@ static NSString *ListenCellID = @"ListenCellID";
     [super viewDidLoad];
     [self setupUI];
 }
-
+// 从这个listen界面出来记得移除
+- (void)viewWillDisappear:(BOOL)animated{
+    [super viewWillDisappear:animated];
+    for (UIView *windowSubview in [UIApplication sharedApplication].keyWindow.subviews) {
+        if ([windowSubview isKindOfClass:[XSYListenPlayerView class]]) {
+            [windowSubview removeFromSuperview];
+        }
+    }
+}
 #pragma mark - segmentedcontrol init and collection inti -
 - (void)setupUI{
     // titleview

@@ -47,4 +47,12 @@ typedef void(^FailureBlock)(NSError *error);
 + (void)getVoaListeningContentWithVoaid:(NSString *)voaid
                     successBlock:(SuccessBlock)successBlock
                     failureBlock:(FailureBlock)failureBlock;
+
+
+/**
+ 文章
+ */
++ (void)getVoaEssayWithLimit:(NSUInteger)limit
+                successBlock:(SuccessBlock)successBlock
+                failureBlock:(FailureBlock)failureBlock;
 @end

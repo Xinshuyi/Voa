@@ -13,6 +13,7 @@
 #import "XSYListeningContentModel.h"
 #import "XSYVoaCacheTool.h"
 #import <RealReachability.h>
+#import "XSYEssayMainModel.h"
 
 @implementation XSYNetworking
 
@@ -123,6 +124,23 @@
         if (error == nil) {
             NSArray *array = response[@"data"];
             NSArray *modelArr = [XSYListeningContentModel mj_objectArrayWithKeyValuesArray:array];
+            if (successBlock) {
+                successBlock(modelArr);
+            }
+        }else{
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }
+    }];
+}
+
++ (void)getVoaEssayWithLimit:(NSUInteger)limit successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    NSString *urlStr = @"http://english.avosapps.com/feed";
+    NSDictionary *para = @{@"limit":[NSString stringWithFormat:@"%ld",limit],@"s":@"englishnewss"};
+    [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
+        if (error == nil) {
+            NSArray<XSYEssayMainModel *> *modelArr = [XSYEssayMainModel mj_objectArrayWithKeyValuesArray:response];
             if (successBlock) {
                 successBlock(modelArr);
             }
