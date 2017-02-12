@@ -7,9 +7,12 @@
 //
 
 #import <Foundation/Foundation.h>
-@class XSYEssayPicModel;
+#import <UIKit/UIKit.h>
+@class XSYEssayDataModel;
 @interface XSYEssayMainModel : NSObject
 @property (nonatomic, copy) NSString *createdAt;
-@property (nonatomic, strong) XSYEssayPicModel *dataModel;
+@property (nonatomic, strong) XSYEssayDataModel *dataModel;
+@property (nonatomic, copy) NSString *messageId;
+
 
 @end

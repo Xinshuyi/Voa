@@ -14,7 +14,10 @@
 #import "XSYVoaCacheTool.h"
 #import <RealReachability.h>
 #import "XSYEssayMainModel.h"
-
+#import "XSYEssayDataModel.h"
+#import "XSYEssayImageModel.h"
+#import <SDWebImageManager.h>
+typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 @implementation XSYNetworking
 
 + (void)getVoaNormalSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
@@ -141,14 +144,47 @@
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
         if (error == nil) {
             NSArray<XSYEssayMainModel *> *modelArr = [XSYEssayMainModel mj_objectArrayWithKeyValuesArray:response];
-            if (successBlock) {
-                successBlock(modelArr);
-            }
+            // 下载图片
+            [self downloadIMAGE:modelArr downBlock:^(BOOL isDownload) {
+                if (isDownload == YES) {
+                    if (successBlock) {
+                        successBlock(modelArr);
+                    }
+                }else{
+                    if (failureBlock) {
+                        failureBlock(error);
+                    }
+                }
+            }];
         }else{
             if (failureBlock) {
                 failureBlock(error);
             }
         }
     }];
+}
+
++ (void)downloadIMAGE:(NSArray<XSYEssayMainModel *> *)array downBlock:(DownLoadIMAGEBlock)downBlock{
+    // 使用调度组
+    dispatch_group_t group = dispatch_group_create();
+
+    for (int i = 0; i < array.count; i ++) {
+        NSString *imageURLStr = array[i].dataModel.image.url;
+        NSURL *imageURL = [NSURL URLWithString:imageURLStr];
+        // 入组
+        dispatch_group_enter(group);
+        // 下载图片
+        [[SDWebImageManager sharedManager] downloadImageWithURL:imageURL options:SDWebImageRetryFailed progress:nil completed:^(UIImage *image, NSError *error, SDImageCacheType cacheType, BOOL finished, NSURL *imageURL) {
+            // 下载成功后出组
+            dispatch_group_leave(group);
+        }];
+        // 群组结束
+        dispatch_group_notify(group, dispatch_get_main_queue(), ^{
+            // 代表图片全数下载成功
+            if(downBlock){
+                downBlock(YES);
+            }
+        });
+    }
 }
 @end

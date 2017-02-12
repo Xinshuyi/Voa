@@ -13,7 +13,7 @@
 // 模型里面有模型
 //+ (NSDictionary *)mj_objectClassInArray
 //{
-//    return @{@"dataModel" : @"XSYEssayDataModel"};
+//    return @{@"dataModel" : @"data"};
 //}
 
 // 替换系统关键字 新的 -》 系统关键字

@@ -37,6 +37,7 @@
 		22D3D2921E44B25E00F300EB /* UILabel+Helper.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2801E44B25E00F300EB /* UILabel+Helper.m */; };
 		22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2831E44B25E00F300EB /* UIView+Extension.m */; };
 		22D3D2961E44B2F600F300EB /* NavigationController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D3D2951E44B2F600F300EB /* NavigationController.m */; };
+		22D9468E1E503A14003D2B5B /* XSYEssayCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22D9468D1E503A14003D2B5B /* XSYEssayCell.m */; };
 		22E659321E478C9900789F93 /* DetailTableViewController.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659311E478C9900789F93 /* DetailTableViewController.m */; };
 		22E659351E48237400789F93 /* XSYParentModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659341E48237400789F93 /* XSYParentModel.m */; };
 		22E6593B1E48698000789F93 /* XSYDetailModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E6593A1E48698000789F93 /* XSYDetailModel.m */; };
@@ -117,6 +118,8 @@
 		22D3D2831E44B25E00F300EB /* UIView+Extension.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = "UIView+Extension.m"; sourceTree = "<group>"; };
 		22D3D2941E44B2F600F300EB /* NavigationController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = NavigationController.h; sourceTree = "<group>"; };
 		22D3D2951E44B2F600F300EB /* NavigationController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = NavigationController.m; sourceTree = "<group>"; };
+		22D9468C1E503A14003D2B5B /* XSYEssayCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayCell.h; sourceTree = "<group>"; };
+		22D9468D1E503A14003D2B5B /* XSYEssayCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayCell.m; sourceTree = "<group>"; };
 		22E659301E478C9900789F93 /* DetailTableViewController.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = DetailTableViewController.h; sourceTree = "<group>"; };
 		22E659311E478C9900789F93 /* DetailTableViewController.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = DetailTableViewController.m; sourceTree = "<group>"; };
 		22E659331E48237400789F93 /* XSYParentModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYParentModel.h; sourceTree = "<group>"; };
@@ -305,6 +308,8 @@
 		22D3D24E1E44489700F300EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22D9468C1E503A14003D2B5B /* XSYEssayCell.h */,
+				22D9468D1E503A14003D2B5B /* XSYEssayCell.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -701,6 +706,7 @@
 				227309F51E4FFF6A00E5DD1E /* XSYEssayImageModel.m in Sources */,
 				22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */,
 				226475B81E45FE5A0070959A /* EssayController.m in Sources */,
+				22D9468E1E503A14003D2B5B /* XSYEssayCell.m in Sources */,
 				22D3D2851E44B25E00F300EB /* NSAttributedString+CZAdditon.m in Sources */,
 				22D3D2891E44B25E00F300EB /* NSString+CZPath.m in Sources */,
 				22D3D2871E44B25E00F300EB /* NSString+CZBase64.m in Sources */,

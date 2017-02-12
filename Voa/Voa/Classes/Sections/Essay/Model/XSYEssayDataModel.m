@@ -7,12 +7,13 @@
 //
 
 #import "XSYEssayDataModel.h"
-
+#import <MJExtension.h>
 @implementation XSYEssayDataModel
+
 // 模型里面有模型
 //+ (NSDictionary *)mj_objectClassInArray
 //{
-//    return @{@"image" : @"XSYEssayImageModel"};
+//    return @{@"XSYEssayImageModel" : @"image"};
 //}
 
 @end
