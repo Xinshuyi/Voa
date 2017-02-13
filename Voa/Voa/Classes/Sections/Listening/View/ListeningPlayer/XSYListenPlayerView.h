@@ -33,4 +33,6 @@
  关闭
  */
 - (void)closePlayerView;
+
++ (instancetype)shared;
 @end

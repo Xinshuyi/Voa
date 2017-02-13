@@ -144,18 +144,21 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
         if (error == nil) {
             NSArray<XSYEssayMainModel *> *modelArr = [XSYEssayMainModel mj_objectArrayWithKeyValuesArray:response];
+            if (successBlock) {
+                successBlock(modelArr);
+            }
             // 下载图片
-            [self downloadIMAGE:modelArr downBlock:^(BOOL isDownload) {
-                if (isDownload == YES) {
-                    if (successBlock) {
-                        successBlock(modelArr);
-                    }
-                }else{
-                    if (failureBlock) {
-                        failureBlock(error);
-                    }
-                }
-            }];
+//            [self downloadIMAGE:modelArr downBlock:^(BOOL isDownload) {
+//                if (isDownload == YES) {
+//                    if (successBlock) {
+//                        successBlock(modelArr);
+//                    }
+//                }else{
+//                    if (failureBlock) {
+//                        failureBlock(error);
+//                    }
+//                }
+//            }];
         }else{
             if (failureBlock) {
                 failureBlock(error);

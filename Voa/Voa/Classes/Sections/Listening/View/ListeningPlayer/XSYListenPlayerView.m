@@ -126,6 +126,7 @@ static XSYListenPlayerView *_playerView;
     } completion:^(BOOL finished) {
         [self removeFromSuperview];
         self.playMode = ListeningStopping;
+        [self stopTimer];
     }];
 }
 

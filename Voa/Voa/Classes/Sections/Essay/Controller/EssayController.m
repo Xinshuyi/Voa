@@ -13,6 +13,7 @@
 #import "XSYNetworking.h"
 #import "XSYEssayDataModel.h"
 #import <SVProgressHUD.h>
+#import "XSYEssayCell.h"
 
 #define LimitNum 5
 
@@ -29,7 +30,7 @@ static NSString *const essayCellID = @"essayCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     // 注册
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:essayCellID];
+    [self.tableView registerClass:[XSYEssayCell class] forCellReuseIdentifier:essayCellID];
     // refreshcontrol
     // Set header
     MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
@@ -41,7 +42,12 @@ static NSString *const essayCellID = @"essayCellID";
     MJRefreshAutoNormalFooter *footer = [MJRefreshAutoNormalFooter footerWithRefreshingTarget:self refreshingAction:@selector(loadMoreData)];
     self.tableView.mj_footer = footer;
 
+    // 自定义行高
+    self.tableView.estimatedRowHeight = 200;
+    self.tableView.rowHeight = UITableViewAutomaticDimension;
     
+    // 不要分界线
+    self.tableView.separatorStyle = UITableViewCellSeparatorStyleNone;
 }
 
 #pragma mark - loadData -
@@ -74,12 +80,13 @@ static NSString *const essayCellID = @"essayCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:essayCellID forIndexPath:indexPath];
-    cell.textLabel.text = self.modelArr[indexPath.row].createdAt;
+    XSYEssayCell *cell = [tableView dequeueReusableCellWithIdentifier:essayCellID forIndexPath:indexPath];
+    cell.model = self.modelArr[indexPath.row];
     return cell;
 }
-- (void)didReceiveMemoryWarning {
-    [super didReceiveMemoryWarning];
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end

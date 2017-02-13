@@ -31,15 +31,7 @@ static NSString *ListenCellID = @"ListenCellID";
     [super viewDidLoad];
     [self setupUI];
 }
-// 从这个listen界面出来记得移除
-- (void)viewWillDisappear:(BOOL)animated{
-    [super viewWillDisappear:animated];
-    for (UIView *windowSubview in [UIApplication sharedApplication].keyWindow.subviews) {
-        if ([windowSubview isKindOfClass:[XSYListenPlayerView class]]) {
-            [windowSubview removeFromSuperview];
-        }
-    }
-}
+
 #pragma mark - segmentedcontrol init and collection inti -
 - (void)setupUI{
     // titleview
