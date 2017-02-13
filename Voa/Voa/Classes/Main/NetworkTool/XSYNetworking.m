@@ -17,6 +17,8 @@
 #import "XSYEssayDataModel.h"
 #import "XSYEssayImageModel.h"
 #import <SDWebImageManager.h>
+#import "XSYEssayDataTool.h"
+
 typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 @implementation XSYNetworking
 
@@ -65,8 +67,7 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 + (void)getVoaLowSpeedWithPage:(NSInteger)page parentID:(NSString *)parentID maxID:(NSString *)maxID successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleApi2.jsp";
     NSDictionary *para = @{@"type":@"iOS",@"format":@"json",@"maxid":maxID,@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"10",@"parentID":parentID};
-    ReachabilityStatus status = [GLobalRealReachability
-                                 currentReachabilityStatus];
+    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
     if (status == RealStatusNotReachable) {
         // 从数据库获取
         NSArray *dataArray = [XSYVoaCacheTool getVoaModelArrayWithParentID:parentID];
@@ -138,12 +139,29 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
     }];
 }
 
+// 文章模块
 + (void)getVoaEssayWithLimit:(NSUInteger)limit successBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
     NSString *urlStr = @"http://english.avosapps.com/feed";
     NSDictionary *para = @{@"limit":[NSString stringWithFormat:@"%ld",limit],@"s":@"englishnewss"};
+    ReachabilityStatus status = [GLobalRealReachability currentReachabilityStatus];
+    if (status == RealStatusNotReachable) {
+        
+        // 从数据库获取
+        NSArray *dataArray = [XSYEssayDataTool getEssayModelArray];
+        if (successBlock) {
+            successBlock(dataArray);
+        }
+        return;
+    }
+
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:para completeBlock:^(id response, NSError *error) {
         if (error == nil) {
             NSArray<XSYEssayMainModel *> *modelArr = [XSYEssayMainModel mj_objectArrayWithKeyValuesArray:response];
+            // 存储到数据库
+            if (limit == 5) {
+                [XSYEssayDataTool saveEssayModelArrayWithArray:modelArr];
+            }
+
             if (successBlock) {
                 successBlock(modelArr);
             }
@@ -167,6 +185,7 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
     }];
 }
 
+// 下载图片
 + (void)downloadIMAGE:(NSArray<XSYEssayMainModel *> *)array downBlock:(DownLoadIMAGEBlock)downBlock{
     // 使用调度组
     dispatch_group_t group = dispatch_group_create();

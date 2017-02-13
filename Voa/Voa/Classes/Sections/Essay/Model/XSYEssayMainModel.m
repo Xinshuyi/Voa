@@ -20,4 +20,22 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{@"dataModel" : @"data"};
 }
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        _createdAt = [decoder decodeObjectForKey:@"createdAt"];
+        _messageId = [decoder decodeObjectForKey:@"messageId"];
+        _dataModel = [decoder decodeObjectForKey:@"dataModel"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_createdAt forKey:@"createdAt"];
+    [aCoder encodeObject:_messageId forKey:@"messageId"];
+    [aCoder encodeObject:_dataModel forKey:@"dataModel"];
+}
+
 @end

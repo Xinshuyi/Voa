@@ -13,4 +13,20 @@
 + (NSDictionary *)mj_replacedKeyFromPropertyName{
     return @{@"URL" : @"_url"};
 }
+
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        _url = [decoder decodeObjectForKey:@"url"];
+        _URL = [decoder decodeObjectForKey:@"URL"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_url forKey:@"url"];
+    [aCoder encodeObject:_URL forKey:@"URL"];
+}
+
 @end

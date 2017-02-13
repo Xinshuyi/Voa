@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		220819741E51565700DC7F2A /* XSYEssayDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819731E51565700DC7F2A /* XSYEssayDataTool.m */; };
 		2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */; };
 		2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A91E4F487200BD6E2A /* XSYEssayDataModel.m */; };
 		226475B81E45FE5A0070959A /* EssayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475B71E45FE5A0070959A /* EssayController.m */; };
@@ -56,6 +57,8 @@
 /* Begin PBXFileReference section */
 		033B026325066D91307933FB /* Pods-Voa.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voa.debug.xcconfig"; path = "Pods/Target Support Files/Pods-Voa/Pods-Voa.debug.xcconfig"; sourceTree = "<group>"; };
 		1AF2F8632C21FA12A2A3BBA6 /* Pods-Voa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voa/Pods-Voa.release.xcconfig"; sourceTree = "<group>"; };
+		220819721E51565700DC7F2A /* XSYEssayDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataTool.h; sourceTree = "<group>"; };
+		220819731E51565700DC7F2A /* XSYEssayDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayDataTool.m; sourceTree = "<group>"; };
 		2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayMainModel.h; sourceTree = "<group>"; };
 		2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayMainModel.m; sourceTree = "<group>"; };
 		2260E0A81E4F487200BD6E2A /* XSYEssayDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataModel.h; sourceTree = "<group>"; };
@@ -159,6 +162,15 @@
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		220819711E51554400DC7F2A /* DataBase */ = {
+			isa = PBXGroup;
+			children = (
+				220819721E51565700DC7F2A /* XSYEssayDataTool.h */,
+				220819731E51565700DC7F2A /* XSYEssayDataTool.m */,
+			);
+			path = DataBase;
+			sourceTree = "<group>";
+		};
 		2229E7371E4E0F03003717F8 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -276,6 +288,7 @@
 		22D3D24B1E44489700F300EB /* Essay */ = {
 			isa = PBXGroup;
 			children = (
+				220819711E51554400DC7F2A /* DataBase */,
 				22D3D24C1E44489700F300EB /* Controller */,
 				22D3D24D1E44489700F300EB /* Model */,
 				22D3D24E1E44489700F300EB /* View */,
@@ -719,6 +732,7 @@
 				22CF1DC51E4B55FB0001E213 /* XSYListeningContentModel.m in Sources */,
 				22D3D25D1E44497000F300EB /* TabbarController.m in Sources */,
 				226475BE1E45FE8B0070959A /* MineController.m in Sources */,
+				220819741E51565700DC7F2A /* XSYEssayDataTool.m in Sources */,
 				22E659411E48ACA700789F93 /* XSYNetworking.m in Sources */,
 				22D3D2901E44B25E00F300EB /* UIBarButtonItem+Extension.m in Sources */,
 				22CF1DC81E4B8B770001E213 /* XSYListeningContentCell.m in Sources */,

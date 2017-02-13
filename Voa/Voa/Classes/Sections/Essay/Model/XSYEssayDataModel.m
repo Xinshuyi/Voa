@@ -15,5 +15,19 @@
 //{
 //    return @{@"XSYEssayImageModel" : @"image"};
 //}
+- (instancetype)initWithCoder:(NSCoder *)decoder
+{
+    if (self = [super init]) {
+        _text = [decoder decodeObjectForKey:@"text"];
+        _image = [decoder decodeObjectForKey:@"image"];
+    }
+    return self;
+}
+
+- (void)encodeWithCoder:(NSCoder *)aCoder
+{
+    [aCoder encodeObject:_text forKey:@"text"];
+    [aCoder encodeObject:_image forKey:@"image"];
+}
 
 @end

@@ -9,5 +9,7 @@
 #import <Foundation/Foundation.h>
 
 @interface XSYEssayDataTool : NSObject
++ (NSArray *)getEssayModelArray;
 
++ (void)saveEssayModelArrayWithArray:(NSArray *)essayModelArray;
 @end

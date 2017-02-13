@@ -33,6 +33,4 @@
     [aCoder encodeObject:_VoaId forKey:@"VoaId"];
 }
 
-
-
 @end
