@@ -8,6 +8,10 @@
 
 /* Begin PBXBuildFile section */
 		220819741E51565700DC7F2A /* XSYEssayDataTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819731E51565700DC7F2A /* XSYEssayDataTool.m */; };
+		220819821E51DAF300DC7F2A /* XSYMineHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819811E51DAF300DC7F2A /* XSYMineHeaderView.m */; };
+		220819861E51DB4700DC7F2A /* XSYMineFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819851E51DB4700DC7F2A /* XSYMineFlowLayout.m */; };
+		2208198A1E51DBB300DC7F2A /* XSYMineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819891E51DBB300DC7F2A /* XSYMineCollectionCell.m */; };
+		2208198E1E51DC0D00DC7F2A /* XSYMineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2208198D1E51DC0D00DC7F2A /* XSYMineButton.m */; };
 		2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */; };
 		2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A91E4F487200BD6E2A /* XSYEssayDataModel.m */; };
 		226475B81E45FE5A0070959A /* EssayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475B71E45FE5A0070959A /* EssayController.m */; };
@@ -59,6 +63,14 @@
 		1AF2F8632C21FA12A2A3BBA6 /* Pods-Voa.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-Voa.release.xcconfig"; path = "Pods/Target Support Files/Pods-Voa/Pods-Voa.release.xcconfig"; sourceTree = "<group>"; };
 		220819721E51565700DC7F2A /* XSYEssayDataTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataTool.h; sourceTree = "<group>"; };
 		220819731E51565700DC7F2A /* XSYEssayDataTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayDataTool.m; sourceTree = "<group>"; };
+		220819801E51DAF300DC7F2A /* XSYMineHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYMineHeaderView.h; sourceTree = "<group>"; };
+		220819811E51DAF300DC7F2A /* XSYMineHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineHeaderView.m; sourceTree = "<group>"; };
+		220819841E51DB4700DC7F2A /* XSYMineFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYMineFlowLayout.h; sourceTree = "<group>"; };
+		220819851E51DB4700DC7F2A /* XSYMineFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineFlowLayout.m; sourceTree = "<group>"; };
+		220819881E51DBB300DC7F2A /* XSYMineCollectionCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYMineCollectionCell.h; sourceTree = "<group>"; };
+		220819891E51DBB300DC7F2A /* XSYMineCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineCollectionCell.m; sourceTree = "<group>"; };
+		2208198C1E51DC0D00DC7F2A /* XSYMineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYMineButton.h; sourceTree = "<group>"; };
+		2208198D1E51DC0D00DC7F2A /* XSYMineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineButton.m; sourceTree = "<group>"; };
 		2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayMainModel.h; sourceTree = "<group>"; };
 		2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayMainModel.m; sourceTree = "<group>"; };
 		2260E0A81E4F487200BD6E2A /* XSYEssayDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataModel.h; sourceTree = "<group>"; };
@@ -169,6 +181,42 @@
 				220819731E51565700DC7F2A /* XSYEssayDataTool.m */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		2208197F1E51DAB100DC7F2A /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+				220819801E51DAF300DC7F2A /* XSYMineHeaderView.h */,
+				220819811E51DAF300DC7F2A /* XSYMineHeaderView.m */,
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		220819831E51DAFF00DC7F2A /* FlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				220819841E51DB4700DC7F2A /* XSYMineFlowLayout.h */,
+				220819851E51DB4700DC7F2A /* XSYMineFlowLayout.m */,
+			);
+			path = FlowLayout;
+			sourceTree = "<group>";
+		};
+		220819871E51DB7400DC7F2A /* CollectionCell */ = {
+			isa = PBXGroup;
+			children = (
+				220819881E51DBB300DC7F2A /* XSYMineCollectionCell.h */,
+				220819891E51DBB300DC7F2A /* XSYMineCollectionCell.m */,
+			);
+			path = CollectionCell;
+			sourceTree = "<group>";
+		};
+		2208198B1E51DBD200DC7F2A /* MineButton */ = {
+			isa = PBXGroup;
+			children = (
+				2208198C1E51DC0D00DC7F2A /* XSYMineButton.h */,
+				2208198D1E51DC0D00DC7F2A /* XSYMineButton.m */,
+			);
+			path = MineButton;
 			sourceTree = "<group>";
 		};
 		2229E7371E4E0F03003717F8 /* DataBase */ = {
@@ -403,6 +451,10 @@
 		22D3D2561E44489700F300EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				2208198B1E51DBD200DC7F2A /* MineButton */,
+				220819871E51DB7400DC7F2A /* CollectionCell */,
+				220819831E51DAFF00DC7F2A /* FlowLayout */,
+				2208197F1E51DAB100DC7F2A /* HeaderView */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -704,6 +756,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E659681E4A070200789F93 /* XSYListenPlayerView.m in Sources */,
+				220819861E51DB4700DC7F2A /* XSYMineFlowLayout.m in Sources */,
 				22E659641E4A051600789F93 /* XSYListeningCell.m in Sources */,
 				22D3D28F1E44B25E00F300EB /* UIViewController+CZAddition.m in Sources */,
 				2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */,
@@ -711,10 +764,12 @@
 				22D3D2881E44B25E00F300EB /* NSString+CZHash.m in Sources */,
 				22E6594A1E48C25600789F93 /* XSYRefreshHeader.m in Sources */,
 				22D3D2331E44456400F300EB /* AppDelegate.m in Sources */,
+				2208198E1E51DC0D00DC7F2A /* XSYMineButton.m in Sources */,
 				22D3D28A1E44B25E00F300EB /* UIButton+CZAddition.m in Sources */,
 				22D3D2841E44B25E00F300EB /* NSArray+Log.m in Sources */,
 				22D3D2911E44B25E00F300EB /* UIButton+Helper.m in Sources */,
 				22E659351E48237400789F93 /* XSYParentModel.m in Sources */,
+				220819821E51DAF300DC7F2A /* XSYMineHeaderView.m in Sources */,
 				22E659551E4A032A00789F93 /* MyFlowLayout.m in Sources */,
 				227309F51E4FFF6A00E5DD1E /* XSYEssayImageModel.m in Sources */,
 				22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */,
@@ -746,6 +801,7 @@
 				226475BB1E45FE770070959A /* ListenController.m in Sources */,
 				22D3D2921E44B25E00F300EB /* UILabel+Helper.m in Sources */,
 				22D3D28E1E44B25E00F300EB /* UIView+CZAddition.m in Sources */,
+				2208198A1E51DBB300DC7F2A /* XSYMineCollectionCell.m in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

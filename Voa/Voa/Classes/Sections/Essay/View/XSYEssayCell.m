@@ -19,7 +19,7 @@
 @property (nonatomic, strong) UILabel *contenLabel;
 @property (nonatomic, strong) UILabel *timeLabel;
 @property (nonatomic, strong) UIImageView *iconView;
-@property (nonatomic, strong) UIView *lineView;
+@property (nonatomic, strong) UIImageView *lineView;
 @end
 
 @implementation XSYEssayCell
@@ -54,7 +54,7 @@
     
     [self.lineView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.contentView);
-        make.height.mas_equalTo(1);
+        make.height.mas_equalTo(15);
         make.top.equalTo(self.contenLabel.mas_bottom).offset(10);
         make.bottom.equalTo(self.contentView);
     }];
@@ -63,7 +63,9 @@
 #pragma mark - setModel -
 - (void)setModel:(XSYEssayMainModel *)model{
     _model = model;
-    self.timeLabel.text = model.createdAt;
+    NSRange timeRang = [model.createdAt rangeOfString:@"T"];
+    NSString *timeStr = [model.createdAt substringToIndex:timeRang.location];
+    self.timeLabel.text = timeStr;
     self.contenLabel.text = model.dataModel.text;
     [self.iconView sd_setImageWithURL:[NSURL URLWithString:model.dataModel.image.url] placeholderImage:[UIImage imageNamed:@"placeHolderImage"]];
 //    // 重写计算图片尺寸
@@ -90,7 +92,7 @@
 #pragma mark - lazy -
 - (UILabel *)contenLabel{
     if (_contenLabel == nil) {
-        _contenLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:14]];
+        _contenLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:15]];
         _contenLabel.preferredMaxLayoutWidth = screenWidth - 20;
         _contenLabel.numberOfLines = 0;
     }
@@ -99,7 +101,7 @@
 
 - (UILabel *)timeLabel{
     if (_timeLabel == nil) {
-        _timeLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:12]];
+        _timeLabel = [UILabel labelWithtextColor:[UIColor lightGrayColor] font:[UIFont systemFontOfSize:12]];
     }
     return _timeLabel;
 }
@@ -113,10 +115,10 @@
     return _iconView;
 }
 
-- (UIView *)lineView{
+- (UIImageView *)lineView{
     if (_lineView == nil) {
-        _lineView = [[UIView alloc] init];
-        _lineView.backgroundColor = mainColor;
+        _lineView = [[UIImageView alloc] initWithImage:[UIImage imageNamed:@"fenjiexian1"]];
+        _lineView.layer.masksToBounds = YES;
     }
     return _lineView;
 }

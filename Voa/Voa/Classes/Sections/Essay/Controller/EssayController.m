@@ -14,6 +14,7 @@
 #import "XSYEssayDataModel.h"
 #import <SVProgressHUD.h>
 #import "XSYEssayCell.h"
+#import "XSYRefreshHeader.h"
 
 #define LimitNum 5
 
@@ -33,7 +34,7 @@ static NSString *const essayCellID = @"essayCellID";
     [self.tableView registerClass:[XSYEssayCell class] forCellReuseIdentifier:essayCellID];
     // refreshcontrol
     // Set header
-    MJRefreshNormalHeader *header = [MJRefreshNormalHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
+    XSYRefreshHeader *header = [XSYRefreshHeader headerWithRefreshingTarget:self refreshingAction:@selector(loadNewData)];
     
     self.tableView.mj_header = header;
     [self.tableView.mj_header beginRefreshing];
