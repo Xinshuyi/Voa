@@ -14,18 +14,22 @@
 #import "XSYEssayImageModel.h"
 #import <UIImageView+WebCache.h>
 #import <SDWebImageManager.h>
+#import "XSYCopyingLabel.h"
+#import "SDPhotoBrowser.h"
 
-@interface XSYEssayCell ()
-@property (nonatomic, strong) UILabel *contenLabel;
-@property (nonatomic, strong) UILabel *timeLabel;
+@interface XSYEssayCell ()<SDPhotoBrowserDelegate>
+@property (nonatomic, strong) UITextView *contenLabel;
+@property (nonatomic, strong) XSYCopyingLabel *timeLabel;
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UIImageView *lineView;
+@property (nonatomic, strong) UIView *shadowView;
 @end
 
 @implementation XSYEssayCell
 
 - (instancetype)initWithStyle:(UITableViewCellStyle)style reuseIdentifier:(NSString *)reuseIdentifier{
     if (self = [super initWithStyle:style reuseIdentifier:reuseIdentifier]) {
+        self.selectionStyle = UITableViewCellSelectionStyleNone;
         [self.contentView addSubview:self.timeLabel];
         [self.contentView addSubview:self.iconView];
         [self.contentView addSubview:self.contenLabel];
@@ -44,6 +48,7 @@
     [self.contenLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.timeLabel);
         make.top.equalTo(self.iconView.mas_bottom).offset(10);
+        make.trailing.equalTo(self.contentView).offset(-10);
     }];
     
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -77,7 +82,7 @@
 #pragma mark - 计算图片尺寸 -
 - (CGSize)calculateIMAGESizeWithModel:(XSYEssayMainModel *)model{
     // 获取图片
-    UIImage *image = [[[SDWebImageManager sharedManager] imageCache] imageFromDiskCacheForKey:model.dataModel.image.url];
+    UIImage *image = [[[SDWebImageManager sharedManager] imageCache] imageFromDiskCacheForKey:model.dataModel.image.URL];
     CGSize imageSize;
     if (image.size.width > screenWidth -20) {
         imageSize.height = (CGFloat)(image.size.height /  image.size.width) * (screenWidth - 20);
@@ -89,19 +94,42 @@
     return imageSize;
 }
 
+#pragma mark - gesture - 
+- (void)tapIconView:(UITapGestureRecognizer *)tap{
+    SDPhotoBrowser *browser = [[SDPhotoBrowser alloc] init];
+    browser.sourceImagesContainerView = self;
+    browser.imageCount = 1;
+    browser.currentImageIndex = 0;
+    browser.delegate = self;
+    [browser show];
+}
+
+#pragma mark - delegate -
+- (NSURL *)photoBrowser:(SDPhotoBrowser *)browser highQualityImageURLForIndex:(NSInteger)index{
+    return [NSURL URLWithString:self.model.dataModel.image.url];
+}
+
+- (UIImage *)photoBrowser:(SDPhotoBrowser *)browser placeholderImageForIndex:(NSInteger)index{
+    return self.iconView.image;
+}
+
 #pragma mark - lazy -
-- (UILabel *)contenLabel{
+- (UITextView *)contenLabel{
     if (_contenLabel == nil) {
-        _contenLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:15]];
-        _contenLabel.preferredMaxLayoutWidth = screenWidth - 20;
-        _contenLabel.numberOfLines = 0;
+        _contenLabel = [[UITextView alloc] init];
+        _contenLabel.textColor = mainColor;
+        _contenLabel.font = [UIFont systemFontOfSize:15];
+        _contenLabel.editable = NO;
+        _contenLabel.scrollEnabled = NO;
     }
     return _contenLabel;
 }
 
-- (UILabel *)timeLabel{
+- (XSYCopyingLabel *)timeLabel{
     if (_timeLabel == nil) {
-        _timeLabel = [UILabel labelWithtextColor:[UIColor lightGrayColor] font:[UIFont systemFontOfSize:12]];
+        _timeLabel = [[XSYCopyingLabel alloc] init];
+        _timeLabel.textColor = [UIColor lightGrayColor];
+        _timeLabel.font = [UIFont systemFontOfSize:13];
     }
     return _timeLabel;
 }
@@ -111,6 +139,10 @@
         _iconView = [[UIImageView alloc] init];
         _iconView.contentMode = UIViewContentModeScaleAspectFill;
         _iconView.layer.masksToBounds = YES;
+        // shoushi
+        _iconView.userInteractionEnabled = YES;
+        UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapIconView:)];
+        [_iconView addGestureRecognizer:tap];
     }
     return _iconView;
 }
@@ -121,5 +153,13 @@
         _lineView.layer.masksToBounds = YES;
     }
     return _lineView;
+}
+
+- (UIView *)shadowView{
+    if (_shadowView == nil) {
+        _shadowView = [[UIView alloc] init];
+        _shadowView.backgroundColor = [UIColor blackColor];
+    }
+    return _shadowView;
 }
 @end

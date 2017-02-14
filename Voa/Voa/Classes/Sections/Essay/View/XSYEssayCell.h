@@ -7,7 +7,9 @@
 //
 
 #import <UIKit/UIKit.h>
+
 @class XSYEssayMainModel;
+
 @interface XSYEssayCell : UITableViewCell
 @property (nonatomic, strong) XSYEssayMainModel *model;
 

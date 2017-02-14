@@ -12,6 +12,10 @@
 		220819861E51DB4700DC7F2A /* XSYMineFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819851E51DB4700DC7F2A /* XSYMineFlowLayout.m */; };
 		2208198A1E51DBB300DC7F2A /* XSYMineCollectionCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 220819891E51DBB300DC7F2A /* XSYMineCollectionCell.m */; };
 		2208198E1E51DC0D00DC7F2A /* XSYMineButton.m in Sources */ = {isa = PBXBuildFile; fileRef = 2208198D1E51DC0D00DC7F2A /* XSYMineButton.m */; };
+		2222CEF41E52A600001C14A6 /* XSYCopyingLabel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CEF31E52A600001C14A6 /* XSYCopyingLabel.m */; };
+		2222CF011E536188001C14A6 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CEFB1E536188001C14A6 /* SDBrowserImageView.m */; };
+		2222CF021E536188001C14A6 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CEFD1E536188001C14A6 /* SDPhotoBrowser.m */; };
+		2222CF031E536188001C14A6 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CF001E536188001C14A6 /* SDWaitingView.m */; };
 		2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */; };
 		2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A91E4F487200BD6E2A /* XSYEssayDataModel.m */; };
 		226475B81E45FE5A0070959A /* EssayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475B71E45FE5A0070959A /* EssayController.m */; };
@@ -72,6 +76,15 @@
 		220819891E51DBB300DC7F2A /* XSYMineCollectionCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineCollectionCell.m; sourceTree = "<group>"; };
 		2208198C1E51DC0D00DC7F2A /* XSYMineButton.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYMineButton.h; sourceTree = "<group>"; };
 		2208198D1E51DC0D00DC7F2A /* XSYMineButton.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYMineButton.m; sourceTree = "<group>"; };
+		2222CEF21E52A600001C14A6 /* XSYCopyingLabel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYCopyingLabel.h; sourceTree = "<group>"; };
+		2222CEF31E52A600001C14A6 /* XSYCopyingLabel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYCopyingLabel.m; sourceTree = "<group>"; };
+		2222CEFA1E536188001C14A6 /* SDBrowserImageView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDBrowserImageView.h; sourceTree = "<group>"; };
+		2222CEFB1E536188001C14A6 /* SDBrowserImageView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDBrowserImageView.m; sourceTree = "<group>"; };
+		2222CEFC1E536188001C14A6 /* SDPhotoBrowser.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowser.h; sourceTree = "<group>"; };
+		2222CEFD1E536188001C14A6 /* SDPhotoBrowser.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDPhotoBrowser.m; sourceTree = "<group>"; };
+		2222CEFE1E536188001C14A6 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
+		2222CEFF1E536188001C14A6 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
+		2222CF001E536188001C14A6 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
 		2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayMainModel.h; sourceTree = "<group>"; };
 		2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayMainModel.m; sourceTree = "<group>"; };
 		2260E0A81E4F487200BD6E2A /* XSYEssayDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataModel.h; sourceTree = "<group>"; };
@@ -222,6 +235,28 @@
 			path = MineButton;
 			sourceTree = "<group>";
 		};
+		2222CEF81E53613A001C14A6 /* Lib */ = {
+			isa = PBXGroup;
+			children = (
+				2222CEF91E536188001C14A6 /* SDPhotoBrowser */,
+			);
+			path = Lib;
+			sourceTree = "<group>";
+		};
+		2222CEF91E536188001C14A6 /* SDPhotoBrowser */ = {
+			isa = PBXGroup;
+			children = (
+				2222CEFA1E536188001C14A6 /* SDBrowserImageView.h */,
+				2222CEFB1E536188001C14A6 /* SDBrowserImageView.m */,
+				2222CEFC1E536188001C14A6 /* SDPhotoBrowser.h */,
+				2222CEFD1E536188001C14A6 /* SDPhotoBrowser.m */,
+				2222CEFE1E536188001C14A6 /* SDPhotoBrowserConfig.h */,
+				2222CEFF1E536188001C14A6 /* SDWaitingView.h */,
+				2222CF001E536188001C14A6 /* SDWaitingView.m */,
+			);
+			path = SDPhotoBrowser;
+			sourceTree = "<group>";
+		};
 		2229E7371E4E0F03003717F8 /* DataBase */ = {
 			isa = PBXGroup;
 			children = (
@@ -283,6 +318,7 @@
 		22D3D2461E44489700F300EB /* Main */ = {
 			isa = PBXGroup;
 			children = (
+				2222CEF81E53613A001C14A6 /* Lib */,
 				22D3D2471E44489700F300EB /* BaseController */,
 				22D3D2981E44BDC900F300EB /* View */,
 				22D3D2481E44489700F300EB /* Category */,
@@ -374,6 +410,8 @@
 			children = (
 				22D9468C1E503A14003D2B5B /* XSYEssayCell.h */,
 				22D9468D1E503A14003D2B5B /* XSYEssayCell.m */,
+				2222CEF21E52A600001C14A6 /* XSYCopyingLabel.h */,
+				2222CEF31E52A600001C14A6 /* XSYCopyingLabel.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -764,6 +802,7 @@
 				220819861E51DB4700DC7F2A /* XSYMineFlowLayout.m in Sources */,
 				22E659641E4A051600789F93 /* XSYListeningCell.m in Sources */,
 				22D3D28F1E44B25E00F300EB /* UIViewController+CZAddition.m in Sources */,
+				2222CF011E536188001C14A6 /* SDBrowserImageView.m in Sources */,
 				2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */,
 				22E6593B1E48698000789F93 /* XSYDetailModel.m in Sources */,
 				22D3D2881E44B25E00F300EB /* NSString+CZHash.m in Sources */,
@@ -771,8 +810,10 @@
 				22E6594A1E48C25600789F93 /* XSYRefreshHeader.m in Sources */,
 				22D3D2331E44456400F300EB /* AppDelegate.m in Sources */,
 				2208198E1E51DC0D00DC7F2A /* XSYMineButton.m in Sources */,
+				2222CEF41E52A600001C14A6 /* XSYCopyingLabel.m in Sources */,
 				22D3D28A1E44B25E00F300EB /* UIButton+CZAddition.m in Sources */,
 				22D3D2841E44B25E00F300EB /* NSArray+Log.m in Sources */,
+				2222CF021E536188001C14A6 /* SDPhotoBrowser.m in Sources */,
 				22D3D2911E44B25E00F300EB /* UIButton+Helper.m in Sources */,
 				22E659351E48237400789F93 /* XSYParentModel.m in Sources */,
 				220819821E51DAF300DC7F2A /* XSYMineHeaderView.m in Sources */,
@@ -780,6 +821,7 @@
 				227309F51E4FFF6A00E5DD1E /* XSYEssayImageModel.m in Sources */,
 				22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */,
 				226475B81E45FE5A0070959A /* EssayController.m in Sources */,
+				2222CF031E536188001C14A6 /* SDWaitingView.m in Sources */,
 				22D9468E1E503A14003D2B5B /* XSYEssayCell.m in Sources */,
 				22D3D2851E44B25E00F300EB /* NSAttributedString+CZAdditon.m in Sources */,
 				22D3D2891E44B25E00F300EB /* NSString+CZPath.m in Sources */,

@@ -15,13 +15,14 @@
 #import <SVProgressHUD.h>
 #import "XSYEssayCell.h"
 #import "XSYRefreshHeader.h"
+#import "SDPhotoBrowser.h"
 
 #define LimitNum 5
 
 static NSString *const essayCellID = @"essayCellID";
 
 @interface EssayController ()
-@property(nonatomic, assign) NSUInteger limitScale;
+@property (nonatomic, assign) NSUInteger limitScale;
 @property (nonatomic, strong) NSMutableArray<XSYEssayMainModel*> *modelArr;
 
 @end
@@ -84,10 +85,6 @@ static NSString *const essayCellID = @"essayCellID";
     XSYEssayCell *cell = [tableView dequeueReusableCellWithIdentifier:essayCellID forIndexPath:indexPath];
     cell.model = self.modelArr[indexPath.row];
     return cell;
-}
-
-- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
-    [self.tableView deselectRowAtIndexPath:indexPath animated:YES];
 }
 
 @end
