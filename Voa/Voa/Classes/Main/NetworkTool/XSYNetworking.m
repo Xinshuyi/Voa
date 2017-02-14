@@ -26,7 +26,7 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
     NSString *urlStr = @"http://apps.iyuba.com/iyuba/titleChangSuApi2.jsp";
     NSDictionary *para = @{@"maxid":maxID, @"type":@"iOS",@"format":@"json",@"pages":[NSString stringWithFormat:@"%zd",page],@"pageNum":@"10",@"parentID":parentID};
     ReachabilityStatus status = [GLobalRealReachability
-                                 currentReachabilityStatus];
+    currentReachabilityStatus];
     if (status == RealStatusNotReachable) {
     
         // 从数据库获取
