@@ -84,7 +84,7 @@
 
 - (UILabel *)detailLbl{
     if (_detailLbl == nil) {
-        _detailLbl = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:12]];
+        _detailLbl = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:13]];
         _detailLbl.text = @"吃饭睡觉打狗子";
     }
     return _detailLbl;

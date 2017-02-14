@@ -12,6 +12,8 @@
 #import "XSYMineFlowLayout.h"
 #import "CZAdditions.h"
 #import "XSYMineCollectionCell.h"
+#import "XSYMineModel.h"
+#import <MJExtension.h>
 
 static NSString *mineCellID = @"mineCellID";
 
@@ -20,7 +22,9 @@ static NSString *mineCellID = @"mineCellID";
 @property (nonatomic, strong) XSYMineHeaderView *headerView;
 @property (nonatomic, strong) UICollectionView *collectionView;
 @property (nonatomic, strong) NSArray<NSDictionary *> *dataArr;
+@property (nonatomic, strong) NSArray<XSYMineModel *> *modelArr;
 
+@property (nonatomic, assign) NSInteger touchDownNum;
 
 @end
 
@@ -31,7 +35,7 @@ static NSString *mineCellID = @"mineCellID";
     [self.view addSubview:self.headerView];
     [self.view addSubview:self.collectionView];
     [self addConstraints];
-    
+    self.touchDownNum = 999;
 }
 
 - (void)addConstraints{
@@ -50,13 +54,12 @@ static NSString *mineCellID = @"mineCellID";
 
 #pragma mark - datasource an delegate -
 - (NSInteger)collectionView:(UICollectionView *)collectionView numberOfItemsInSection:(NSInteger)section{
-    return 16;
+    return self.modelArr.count;
 }
 
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     XSYMineCollectionCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:mineCellID forIndexPath:indexPath];
-    cell.imageStr = self.dataArr[indexPath.item][@"image"];
-    cell.title = self.dataArr[indexPath.item][@"title"];
+    cell.model = self.modelArr[indexPath.item];
     return cell;
 }
 
@@ -86,11 +89,18 @@ static NSString *mineCellID = @"mineCellID";
         NSArray<NSString *> *titleArr = @[@"桃",@"之",@"夭",@"夭",@"灼",@"灼",@"其",@"华",@"之",@"子",@"于",@"归",@"宜",@"室",@"宜",@"家"];
         NSMutableArray *array = [NSMutableArray array];
         for (int i = 1; i <= 16; i ++) {
-            NSDictionary *dict = @{@"image":[NSString stringWithFormat:@"heart-%d",i],@"title":titleArr[i - 1]};
+            NSDictionary *dict = @{@"image":[NSString stringWithFormat:@"heart-%d",i],@"title":titleArr[i - 1],@"num":@(i - 1)};
             [array addObject:dict];
         }
         _dataArr = array;
     }
     return _dataArr;
+}
+
+- (NSArray<XSYMineModel *> *)modelArr{
+    if (_modelArr == nil) {
+        _modelArr = [XSYMineModel mj_objectArrayWithKeyValuesArray:self.dataArr];
+    }
+    return _modelArr;
 }
 @end

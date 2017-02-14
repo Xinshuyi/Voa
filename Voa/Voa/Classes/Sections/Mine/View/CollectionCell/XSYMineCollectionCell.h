@@ -8,11 +8,11 @@
 
 #import <UIKit/UIKit.h>
 
+@class XSYMineButton;
+@class XSYMineModel;
+
 @interface XSYMineCollectionCell : UICollectionViewCell
 
-@property (nonatomic, copy) NSString *title;
-
-@property (nonatomic, copy) NSString *imageStr;
-
+@property (nonatomic, strong) XSYMineModel *model;
 
 @end

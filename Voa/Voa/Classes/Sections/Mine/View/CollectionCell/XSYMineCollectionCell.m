@@ -10,11 +10,14 @@
 #import "XSYMineButton.h"
 #import "UIButton+Helper.h"
 #import "UILabel+Helper.h"
+#import "XSYMineModel.h"
 
 @interface XSYMineCollectionCell ()
 @property (nonatomic, strong) XSYMineButton *btn;
 @property (nonatomic, strong) UIView *shadowView;
 @property (nonatomic, strong) UILabel *textLbl;
+@property (nonatomic, assign) BOOL isShadow;
+
 @end
 
 @implementation XSYMineCollectionCell
@@ -29,17 +32,24 @@
 
 #pragma mark - button event  and gesture -
 
-- (void)buttonTouchDown:(UIButton *)btn{
-        [btn addSubview:self.shadowView];
-        [UIView animateWithDuration:0.1 animations:^{
-            self.shadowView.frame = self.contentView.bounds;
-        } completion:^(BOOL finished) {
-            self.textLbl.center = self.shadowView.center;
-        }];
+- (void)buttonTouchDown:(XSYMineButton *)btn{
+    [btn addSubview:self.shadowView];
+    [UIView animateWithDuration:0.1 animations:^{
+        self.shadowView.frame = self.contentView.bounds;
+    } completion:^(BOOL finished) {
+        self.textLbl.center = self.shadowView.center;
+        self.isShadow = YES;
+    }];
+    dispatch_after(dispatch_time(DISPATCH_TIME_NOW, (int64_t)(1.0 * NSEC_PER_SEC)), dispatch_get_main_queue(), ^{
+        // 2秒后异步执行这里的代码...
+        [self dispearShadowView];
+    });
 }
 
 - (void)tapShadowView:(UITapGestureRecognizer *)tap{
-    
+    [self dispearShadowView];
+}
+- (void)dispearShadowView{
     CGFloat WH = self.contentView.bounds.size.width;
     [UIView animateWithDuration:0.1 animations:^{
         CGRect newFrame = CGRectMake(0, WH, WH, WH);
@@ -47,17 +57,15 @@
     } completion:^(BOOL finished) {
         self.textLbl.center = self.shadowView.center;
         [self.shadowView removeFromSuperview];
+        self.isShadow = NO;
     }];
 }
-
-- (void)setTitle:(NSString *)title{
-    _title = title;
-    [self.btn setTitle:title forState:UIControlStateNormal];
-}
-
-- (void)setImageStr:(NSString *)imageStr{
-    _imageStr = imageStr;
-    [self.btn setImage:[UIImage imageNamed:imageStr] forState:UIControlStateNormal];
+#pragma mark - set method -
+- (void)setModel:(XSYMineModel *)model{
+    _model = model;
+    [self.btn setImage:[UIImage imageNamed:model.image] forState:UIControlStateNormal];
+    [self.btn setTitle:model.title forState:UIControlStateNormal];
+    self.isShadow = YES;
 }
 
 #pragma mark - lazy -
@@ -65,9 +73,7 @@
     if (_btn == nil) {
         _btn = [[XSYMineButton alloc] initWithFrame:self.contentView.bounds];
         _btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        _btn.titleLabel.text = self.title;
         [_btn setTitleColor:mainColor forState:UIControlStateNormal];
-        _btn.imageView.image = [UIImage imageNamed:self.imageStr];
         [_btn addTarget:self action:@selector(buttonTouchDown:) forControlEvents:UIControlEventTouchDown];
     }
     return _btn;
