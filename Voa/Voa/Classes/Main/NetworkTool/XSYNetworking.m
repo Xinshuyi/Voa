@@ -18,6 +18,7 @@
 #import "XSYEssayImageModel.h"
 #import <SDWebImageManager.h>
 #import "XSYEssayDataTool.h"
+#import "XSYVideoFirstPageMainModel.h"
 
 typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 @implementation XSYNetworking
@@ -208,5 +209,48 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
             }
         });
     }
+}
+
++ (void)getVideoDataWithSuccessBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    
+    NSArray *dictArr = [NSArray arrayWithContentsOfFile:[[NSBundle mainBundle] pathForResource:@"homePage" ofType:@"plist"]];
+    NSArray *modelArr = [XSYVideoFirstPageMainModel mj_objectArrayWithKeyValuesArray:dictArr];
+    NSLog(@"%@",modelArr);
+    if (successBlock) {
+        successBlock(modelArr);
+    }
+    
+//    NSString *urlStr = @"http://c.open.163.com/mobile/recommend/v1.do?mt=iphone";
+//
+//    NSURL *url = [NSURL URLWithString:urlStr];
+//    
+//    NSURLSession *session = [NSURLSession sharedSession];
+//    
+//    NSURLSessionDataTask *dataTask = [session dataTaskWithURL:url completionHandler:^(NSData * _Nullable data, NSURLResponse * _Nullable response, NSError * _Nullable error) {
+//        
+//        NSStringEncoding enc = kCFStringEncodingUTF8;
+//        
+//        NSString* strdata = [[NSString alloc]initWithData:data encoding:enc];//在将NSString类型转为NSData
+//        
+//        NSData * newData = [strdata dataUsingEncoding:NSUTF8StringEncoding];//这样解决的乱码问题。
+//        
+//        NSDictionary *json = [NSJSONSerialization JSONObjectWithData:newData options:kNilOptions error:&error ];
+//            NSLog(@"%@",json);
+//    }];
+//    [dataTask resume];
+
+//    [[NetworkingTools shared] request:GET urlString:urlStr parameters:nil completeBlock:^(id response, NSError *error) {
+//        if (error == nil) {
+//            NSArray *modelArr = [XSYVideoFirstPageMainModel mj_objectArrayWithKeyValuesArray:response];
+//            if (successBlock) {
+//                successBlock(modelArr);
+//            }
+//        }else{
+//            if (failureBlock) {
+//                failureBlock(error);
+//            }
+//        }
+//
+//    }];
 }
 @end

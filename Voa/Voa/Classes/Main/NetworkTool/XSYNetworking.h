@@ -55,4 +55,10 @@ typedef void(^FailureBlock)(NSError *error);
 + (void)getVoaEssayWithLimit:(NSUInteger)limit
                 successBlock:(SuccessBlock)successBlock
                 failureBlock:(FailureBlock)failureBlock;
+
+
+/**
+视频首页
+ */
++ (void)getVideoDataWithSuccessBlock:(SuccessBlock)successBlock       failureBlock:(FailureBlock)failureBlock;
 @end

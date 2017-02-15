@@ -28,6 +28,8 @@ PODS:
     - RealReachability/Ping (= 1.1.8)
   - RealReachability/Connection (1.1.8)
   - RealReachability/Ping (1.1.8)
+  - SDCycleScrollView (1.65):
+    - SDWebImage (~> 3.7)
   - SDWebImage (3.8.2):
     - SDWebImage/Core (= 3.8.2)
   - SDWebImage/Core (3.8.2)
@@ -41,6 +43,7 @@ DEPENDENCIES:
   - MJExtension
   - MJRefresh
   - RealReachability
+  - SDCycleScrollView
   - SDWebImage
   - SVProgressHUD
 
@@ -53,9 +56,10 @@ SPEC CHECKSUMS:
   MJRefresh: b96cdb21c4aa75a7b07654311ab2f315c497e806
   Reachability: 33e18b67625424e47b6cde6d202dce689ad7af96
   RealReachability: e6c8a2bbffa316006e8c282efc1ee2567d61a920
+  SDCycleScrollView: f72904c77698a7f93a41bcbbc2d78b073bf7326c
   SDWebImage: 098e97e6176540799c27e804c96653ee0833d13c
   SVProgressHUD: b0830714205bea1317ea1a2ebc71e5633af334d4
 
-PODFILE CHECKSUM: 0692205dea3acf81812cdefd3bdff628ab2465d4
+PODFILE CHECKSUM: 8b9b3d0486aa3546d39b5749559345b748bf2b39
 
 COCOAPODS: 1.1.1

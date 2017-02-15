@@ -43,7 +43,6 @@
 
 - (void)creatChildNavigationControllerWithVC:(UIViewController *)vc title:(NSString *)title image:(NSString *)image selectedImage:(NSString *)selectedImage{
     vc.title = title;
-    vc.view.backgroundColor = [UIColor whiteColor];
     UINavigationController *controller = [[NavigationController alloc] initWithRootViewController:vc];
     controller.tabBarItem.image =[[UIImage imageNamed: image] imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];
     controller.tabBarItem.selectedImage =[[UIImage imageNamed:selectedImage]imageWithRenderingMode:UIImageRenderingModeAlwaysOriginal];

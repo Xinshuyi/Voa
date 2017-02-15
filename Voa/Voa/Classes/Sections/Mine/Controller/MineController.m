@@ -39,6 +39,7 @@ static NSString *mineCellID = @"mineCellID";
 }
 
 - (void)addConstraints{
+    self.view.backgroundColor = [UIColor whiteColor];
     [self.headerView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.trailing.equalTo(self.view);
         make.top.equalTo(self.mas_topLayoutGuideBottom);

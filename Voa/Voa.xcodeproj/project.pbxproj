@@ -16,6 +16,12 @@
 		2222CF011E536188001C14A6 /* SDBrowserImageView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CEFB1E536188001C14A6 /* SDBrowserImageView.m */; };
 		2222CF021E536188001C14A6 /* SDPhotoBrowser.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CEFD1E536188001C14A6 /* SDPhotoBrowser.m */; };
 		2222CF031E536188001C14A6 /* SDWaitingView.m in Sources */ = {isa = PBXBuildFile; fileRef = 2222CF001E536188001C14A6 /* SDWaitingView.m */; };
+		22468F531E5465A400A814A8 /* libz.1.2.5.tbd in Frameworks */ = {isa = PBXBuildFile; fileRef = 22468F521E5465A400A814A8 /* libz.1.2.5.tbd */; };
+		22468F551E5467B900A814A8 /* homePage.plist in Resources */ = {isa = PBXBuildFile; fileRef = 22468F541E5467B900A814A8 /* homePage.plist */; };
+		22468F591E546DAF00A814A8 /* XSYVideoFlowLayout.m in Sources */ = {isa = PBXBuildFile; fileRef = 22468F581E546DAF00A814A8 /* XSYVideoFlowLayout.m */; };
+		22468F601E5475CD00A814A8 /* XSYCollectionHeaderView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22468F5F1E5475CD00A814A8 /* XSYCollectionHeaderView.m */; };
+		22468F641E54A0AA00A814A8 /* XSYCycleViewCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22468F631E54A0AA00A814A8 /* XSYCycleViewCell.m */; };
+		22468F681E54AEF000A814A8 /* XSYVideoNormalwCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22468F671E54AEF000A814A8 /* XSYVideoNormalwCell.m */; };
 		2260E0A71E4F485800BD6E2A /* XSYEssayMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */; };
 		2260E0AA1E4F487200BD6E2A /* XSYEssayDataModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 2260E0A91E4F487200BD6E2A /* XSYEssayDataModel.m */; };
 		226475B81E45FE5A0070959A /* EssayController.m in Sources */ = {isa = PBXBuildFile; fileRef = 226475B71E45FE5A0070959A /* EssayController.m */; };
@@ -59,6 +65,8 @@
 		22E659601E4A04B300789F93 /* XSYDetailCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E6595F1E4A04B300789F93 /* XSYDetailCell.m */; };
 		22E659641E4A051600789F93 /* XSYListeningCell.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659631E4A051600789F93 /* XSYListeningCell.m */; };
 		22E659681E4A070200789F93 /* XSYListenPlayerView.m in Sources */ = {isa = PBXBuildFile; fileRef = 22E659671E4A070200789F93 /* XSYListenPlayerView.m */; };
+		22ED6D9F1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ED6D9E1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.m */; };
+		22ED6DA21E54040200CE5A4F /* XSYVideoFirstPageTopicModel.m in Sources */ = {isa = PBXBuildFile; fileRef = 22ED6DA11E54040200CE5A4F /* XSYVideoFirstPageTopicModel.m */; };
 		22FFDA751E4E0FDB005FC38F /* XSYVoaCacheTool.m in Sources */ = {isa = PBXBuildFile; fileRef = 22FFDA741E4E0FDB005FC38F /* XSYVoaCacheTool.m */; };
 		AF4CF0842AA15218400BE7CF /* libPods-Voa.a in Frameworks */ = {isa = PBXBuildFile; fileRef = E8CA67320E147C8A4F07E75F /* libPods-Voa.a */; };
 /* End PBXBuildFile section */
@@ -85,6 +93,16 @@
 		2222CEFE1E536188001C14A6 /* SDPhotoBrowserConfig.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDPhotoBrowserConfig.h; sourceTree = "<group>"; };
 		2222CEFF1E536188001C14A6 /* SDWaitingView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = SDWaitingView.h; sourceTree = "<group>"; };
 		2222CF001E536188001C14A6 /* SDWaitingView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = SDWaitingView.m; sourceTree = "<group>"; };
+		22468F521E5465A400A814A8 /* libz.1.2.5.tbd */ = {isa = PBXFileReference; lastKnownFileType = "sourcecode.text-based-dylib-definition"; name = libz.1.2.5.tbd; path = usr/lib/libz.1.2.5.tbd; sourceTree = SDKROOT; };
+		22468F541E5467B900A814A8 /* homePage.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = homePage.plist; sourceTree = "<group>"; };
+		22468F571E546DAF00A814A8 /* XSYVideoFlowLayout.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYVideoFlowLayout.h; sourceTree = "<group>"; };
+		22468F581E546DAF00A814A8 /* XSYVideoFlowLayout.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYVideoFlowLayout.m; sourceTree = "<group>"; };
+		22468F5E1E5475CD00A814A8 /* XSYCollectionHeaderView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; name = XSYCollectionHeaderView.h; path = HeaderView/XSYCollectionHeaderView.h; sourceTree = "<group>"; };
+		22468F5F1E5475CD00A814A8 /* XSYCollectionHeaderView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; name = XSYCollectionHeaderView.m; path = HeaderView/XSYCollectionHeaderView.m; sourceTree = "<group>"; };
+		22468F621E54A0AA00A814A8 /* XSYCycleViewCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYCycleViewCell.h; sourceTree = "<group>"; };
+		22468F631E54A0AA00A814A8 /* XSYCycleViewCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYCycleViewCell.m; sourceTree = "<group>"; };
+		22468F661E54AEF000A814A8 /* XSYVideoNormalwCell.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYVideoNormalwCell.h; sourceTree = "<group>"; };
+		22468F671E54AEF000A814A8 /* XSYVideoNormalwCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYVideoNormalwCell.m; sourceTree = "<group>"; };
 		2260E0A51E4F485800BD6E2A /* XSYEssayMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayMainModel.h; sourceTree = "<group>"; };
 		2260E0A61E4F485800BD6E2A /* XSYEssayMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYEssayMainModel.m; sourceTree = "<group>"; };
 		2260E0A81E4F487200BD6E2A /* XSYEssayDataModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYEssayDataModel.h; sourceTree = "<group>"; };
@@ -173,6 +191,10 @@
 		22E659631E4A051600789F93 /* XSYListeningCell.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYListeningCell.m; sourceTree = "<group>"; };
 		22E659661E4A070200789F93 /* XSYListenPlayerView.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYListenPlayerView.h; sourceTree = "<group>"; };
 		22E659671E4A070200789F93 /* XSYListenPlayerView.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYListenPlayerView.m; sourceTree = "<group>"; };
+		22ED6D9D1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYVideoFirstPageMainModel.h; sourceTree = "<group>"; };
+		22ED6D9E1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYVideoFirstPageMainModel.m; sourceTree = "<group>"; };
+		22ED6DA01E54040200CE5A4F /* XSYVideoFirstPageTopicModel.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYVideoFirstPageTopicModel.h; sourceTree = "<group>"; };
+		22ED6DA11E54040200CE5A4F /* XSYVideoFirstPageTopicModel.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYVideoFirstPageTopicModel.m; sourceTree = "<group>"; };
 		22FFDA731E4E0FDB005FC38F /* XSYVoaCacheTool.h */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.h; path = XSYVoaCacheTool.h; sourceTree = "<group>"; };
 		22FFDA741E4E0FDB005FC38F /* XSYVoaCacheTool.m */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.c.objc; path = XSYVoaCacheTool.m; sourceTree = "<group>"; };
 		E8CA67320E147C8A4F07E75F /* libPods-Voa.a */ = {isa = PBXFileReference; explicitFileType = archive.ar; includeInIndex = 0; path = "libPods-Voa.a"; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -183,6 +205,7 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22468F531E5465A400A814A8 /* libz.1.2.5.tbd in Frameworks */,
 				AF4CF0842AA15218400BE7CF /* libPods-Voa.a in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -264,6 +287,40 @@
 				22FFDA741E4E0FDB005FC38F /* XSYVoaCacheTool.m */,
 			);
 			path = DataBase;
+			sourceTree = "<group>";
+		};
+		22468F561E546D6800A814A8 /* FlowLayout */ = {
+			isa = PBXGroup;
+			children = (
+				22468F571E546DAF00A814A8 /* XSYVideoFlowLayout.h */,
+				22468F581E546DAF00A814A8 /* XSYVideoFlowLayout.m */,
+			);
+			path = FlowLayout;
+			sourceTree = "<group>";
+		};
+		22468F5D1E54758F00A814A8 /* HeaderView */ = {
+			isa = PBXGroup;
+			children = (
+			);
+			path = HeaderView;
+			sourceTree = "<group>";
+		};
+		22468F611E54A05100A814A8 /* CycleViewCell */ = {
+			isa = PBXGroup;
+			children = (
+				22468F621E54A0AA00A814A8 /* XSYCycleViewCell.h */,
+				22468F631E54A0AA00A814A8 /* XSYCycleViewCell.m */,
+			);
+			path = CycleViewCell;
+			sourceTree = "<group>";
+		};
+		22468F651E54AEA500A814A8 /* NormalCell */ = {
+			isa = PBXGroup;
+			children = (
+				22468F661E54AEF000A814A8 /* XSYVideoNormalwCell.h */,
+				22468F671E54AEF000A814A8 /* XSYVideoNormalwCell.m */,
+			);
+			path = NormalCell;
 			sourceTree = "<group>";
 		};
 		22D3D2221E44456400F300EB = {
@@ -353,6 +410,7 @@
 		22D3D2491E44489700F300EB /* NetworkTool */ = {
 			isa = PBXGroup;
 			children = (
+				22468F541E5467B900A814A8 /* homePage.plist */,
 				22E6593C1E48ABDA00789F93 /* NetworkingTools.h */,
 				22E6593D1E48ABDA00789F93 /* NetworkingTools.m */,
 				22E6593F1E48ACA700789F93 /* XSYNetworking.h */,
@@ -524,6 +582,7 @@
 		22D3D2591E44489700F300EB /* Model */ = {
 			isa = PBXGroup;
 			children = (
+				22ED6D9C1E5402F500CE5A4F /* FirstPage */,
 			);
 			path = Model;
 			sourceTree = "<group>";
@@ -531,6 +590,12 @@
 		22D3D25A1E44489700F300EB /* View */ = {
 			isa = PBXGroup;
 			children = (
+				22468F651E54AEA500A814A8 /* NormalCell */,
+				22468F611E54A05100A814A8 /* CycleViewCell */,
+				22468F561E546D6800A814A8 /* FlowLayout */,
+				22468F5D1E54758F00A814A8 /* HeaderView */,
+				22468F5E1E5475CD00A814A8 /* XSYCollectionHeaderView.h */,
+				22468F5F1E5475CD00A814A8 /* XSYCollectionHeaderView.m */,
 			);
 			path = View;
 			sourceTree = "<group>";
@@ -659,6 +724,17 @@
 			path = ListeningPlayer;
 			sourceTree = "<group>";
 		};
+		22ED6D9C1E5402F500CE5A4F /* FirstPage */ = {
+			isa = PBXGroup;
+			children = (
+				22ED6D9D1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.h */,
+				22ED6D9E1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.m */,
+				22ED6DA01E54040200CE5A4F /* XSYVideoFirstPageTopicModel.h */,
+				22ED6DA11E54040200CE5A4F /* XSYVideoFirstPageTopicModel.m */,
+			);
+			path = FirstPage;
+			sourceTree = "<group>";
+		};
 		78AAC2B2CCB88587BC7C5DA6 /* Pods */ = {
 			isa = PBXGroup;
 			children = (
@@ -671,6 +747,7 @@
 		F6EA7FDA312803171AAFE616 /* Frameworks */ = {
 			isa = PBXGroup;
 			children = (
+				22468F521E5465A400A814A8 /* libz.1.2.5.tbd */,
 				E8CA67320E147C8A4F07E75F /* libPods-Voa.a */,
 			);
 			name = Frameworks;
@@ -739,6 +816,7 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				22468F551E5467B900A814A8 /* homePage.plist in Resources */,
 				22D3D23B1E44456400F300EB /* Assets.xcassets in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
@@ -799,6 +877,7 @@
 			buildActionMask = 2147483647;
 			files = (
 				22E659681E4A070200789F93 /* XSYListenPlayerView.m in Sources */,
+				22468F681E54AEF000A814A8 /* XSYVideoNormalwCell.m in Sources */,
 				220819861E51DB4700DC7F2A /* XSYMineFlowLayout.m in Sources */,
 				22E659641E4A051600789F93 /* XSYListeningCell.m in Sources */,
 				22D3D28F1E44B25E00F300EB /* UIViewController+CZAddition.m in Sources */,
@@ -810,16 +889,20 @@
 				22E6594A1E48C25600789F93 /* XSYRefreshHeader.m in Sources */,
 				22D3D2331E44456400F300EB /* AppDelegate.m in Sources */,
 				2208198E1E51DC0D00DC7F2A /* XSYMineButton.m in Sources */,
+				22ED6D9F1E54036B00CE5A4F /* XSYVideoFirstPageMainModel.m in Sources */,
 				2222CEF41E52A600001C14A6 /* XSYCopyingLabel.m in Sources */,
 				22D3D28A1E44B25E00F300EB /* UIButton+CZAddition.m in Sources */,
 				22D3D2841E44B25E00F300EB /* NSArray+Log.m in Sources */,
+				22ED6DA21E54040200CE5A4F /* XSYVideoFirstPageTopicModel.m in Sources */,
 				2222CF021E536188001C14A6 /* SDPhotoBrowser.m in Sources */,
 				22D3D2911E44B25E00F300EB /* UIButton+Helper.m in Sources */,
 				22E659351E48237400789F93 /* XSYParentModel.m in Sources */,
 				220819821E51DAF300DC7F2A /* XSYMineHeaderView.m in Sources */,
+				22468F641E54A0AA00A814A8 /* XSYCycleViewCell.m in Sources */,
 				22E659551E4A032A00789F93 /* MyFlowLayout.m in Sources */,
 				227309F51E4FFF6A00E5DD1E /* XSYEssayImageModel.m in Sources */,
 				22D3D2931E44B25E00F300EB /* UIView+Extension.m in Sources */,
+				22468F601E5475CD00A814A8 /* XSYCollectionHeaderView.m in Sources */,
 				226475B81E45FE5A0070959A /* EssayController.m in Sources */,
 				2222CF031E536188001C14A6 /* SDWaitingView.m in Sources */,
 				22D9468E1E503A14003D2B5B /* XSYEssayCell.m in Sources */,
@@ -836,6 +919,7 @@
 				22D3D25D1E44497000F300EB /* TabbarController.m in Sources */,
 				226475BE1E45FE8B0070959A /* MineController.m in Sources */,
 				220819741E51565700DC7F2A /* XSYEssayDataTool.m in Sources */,
+				22468F591E546DAF00A814A8 /* XSYVideoFlowLayout.m in Sources */,
 				22E659411E48ACA700789F93 /* XSYNetworking.m in Sources */,
 				22D3D2901E44B25E00F300EB /* UIBarButtonItem+Extension.m in Sources */,
 				22CF1DC81E4B8B770001E213 /* XSYListeningContentCell.m in Sources */,
