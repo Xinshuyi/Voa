@@ -79,7 +79,7 @@ typedef NS_ENUM(NSUInteger, ShadowViewStatus) {
     
     [self.descLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.leftImageView.mas_trailing).offset(8);
-        make.top.equalTo(self.tagsLabel).offset(5);
+        make.top.equalTo(self.tagsLabel).offset(8);
         make.trailing.equalTo(self.topImageView);
         make.bottom.equalTo(self.leftImageView);
     }];
@@ -137,6 +137,9 @@ typedef NS_ENUM(NSUInteger, ShadowViewStatus) {
 }
 
 - (void)setContentOffsetY:(CGFloat)contentOffsetY{
+    if (contentOffsetY >= 0) {
+        return;
+    }
     _contentOffsetY = contentOffsetY;
     [self.topImageView mas_updateConstraints:^(MASConstraintMaker *make) {
         make.top.equalTo(self).offset(20 + contentOffsetY);
@@ -166,19 +169,19 @@ typedef NS_ENUM(NSUInteger, ShadowViewStatus) {
 
 - (UILabel *)typeLabel{
     if (_typeLabel == nil) {
-        _typeLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:20]];
-        _typeLabel.layer.cornerRadius = 7;
+        _typeLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:14]];
+        _typeLabel.layer.cornerRadius = 5;
         _typeLabel.clipsToBounds = YES;
-        _typeLabel.backgroundColor = [UIColor cz_colorWithRed:108 green:118 blue:78];
+        _typeLabel.backgroundColor = [UIColor cz_colorWithRed:107 green:222 blue:90];
     }
     return _typeLabel ;
 }
 
 - (UILabel *)tagsLabel{
     if (_tagsLabel == nil) {
-        _tagsLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15]];
-        _tagsLabel.backgroundColor = [UIColor darkGrayColor];
-        _tagsLabel.layer.cornerRadius = 5;
+        _tagsLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:18]];
+        _tagsLabel.backgroundColor = [UIColor cz_colorWithRed:253 green:222 blue:121];
+        _tagsLabel.layer.cornerRadius = 8;
         _tagsLabel.clipsToBounds = YES;
     }
     return _tagsLabel;
@@ -208,7 +211,7 @@ typedef NS_ENUM(NSUInteger, ShadowViewStatus) {
 - (UILabel *)shadowView{
     if (_shadowView == nil) {
         _shadowView = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:20] text:@"查看更多"];
-        _shadowView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.7];
+        _shadowView.backgroundColor = [UIColor colorWithWhite:0 alpha:1];
         _shadowView.textAlignment = NSTextAlignmentCenter;
         // 添加手势
         UITapGestureRecognizer *tap = [[UITapGestureRecognizer alloc] initWithTarget:self action:@selector(tapShadowView)];

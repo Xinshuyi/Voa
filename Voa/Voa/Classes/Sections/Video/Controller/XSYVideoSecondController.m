@@ -14,6 +14,8 @@
 #import "XSYVideoSecondPageListsModel.h"
 #import "XSYVideoSecondPageTableHeaderView.h"
 #import "CZAdditions.h"
+#import "XSYVideoDetailController.h"
+#import "XSYVideoSecondPageCell.h"
 
 static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 
@@ -28,9 +30,10 @@ static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = mainColor;
+    self.tableView.rowHeight = screenWidth * 0.5;
     [self loadData];
     // 注册
-    [self.tableView registerClass:[UITableViewCell class] forCellReuseIdentifier:secondPageVideoCellID];
+    [self.tableView registerClass:[XSYVideoSecondPageCell class] forCellReuseIdentifier:secondPageVideoCellID];
     // 头视图
     _headerView = [[XSYVideoSecondPageTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, screenHeight *0.618)];
     _headerView.delegate = self;
@@ -65,13 +68,21 @@ static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 }
 
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
-    UITableViewCell *cell = [tableView dequeueReusableCellWithIdentifier:secondPageVideoCellID forIndexPath:indexPath];
+    XSYVideoSecondPageCell *cell = [tableView dequeueReusableCellWithIdentifier:secondPageVideoCellID forIndexPath:indexPath];
+    cell.model = self.selfModel.videoList[indexPath.row];
     cell.backgroundColor = [UIColor cz_randomColor];
     return cell;
 }
 
+- (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
+    return @"更多视频";
+}
+
 - (void)secondPageTableHeaderView:(XSYVideoSecondPageTableHeaderView *)secondPageTableHeaderView disTapMoreShadowView:(UIView *)shadowView WithModel:(XSYVideoSecondPageMainModel *)model{
     NSLog(@"%@",model);
+    XSYVideoDetailController *vc = [[XSYVideoDetailController alloc] init];
+    vc.model = model;
+    [self.navigationController pushViewController:vc animated:YES];
 }
 
 #pragma mark - set method -
