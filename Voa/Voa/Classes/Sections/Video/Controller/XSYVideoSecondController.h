@@ -10,7 +10,7 @@
 
 @class XSYVideoFirstPageTopicModel;
 
-@interface XSYVideoSecondController : UIViewController
+@interface XSYVideoSecondController : UITableViewController
 @property (nonatomic, strong) XSYVideoFirstPageTopicModel *model;
 
 @end

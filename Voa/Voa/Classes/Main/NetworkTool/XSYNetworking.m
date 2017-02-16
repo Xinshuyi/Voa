@@ -256,6 +256,12 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 }
 
 + (void)getVideoSecondPageWithContentID:(NSString *)contentID SuccessBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    if ([contentID containsString:@"_"]) {
+        // 截取字符串
+        NSRange range = [contentID rangeOfString:@"_"];
+        contentID = [contentID substringToIndex:range.location];
+        NSLog(@"%@",contentID);
+    }
     NSString *urlStr = [NSString stringWithFormat:@"http://so.open.163.com/movie/%@/getMovies4Ipad.htm",contentID];
     [[NetworkingTools shared] request:GET urlString:urlStr parameters:nil completeBlock:^(id response, NSError *error) {
 
