@@ -43,7 +43,7 @@
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.shadowView).offset(3);
+        make.leading.equalTo(self.shadowView);
         make.bottom.equalTo(self.desc_subLabel.mas_top).offset(-5);
     }];
     

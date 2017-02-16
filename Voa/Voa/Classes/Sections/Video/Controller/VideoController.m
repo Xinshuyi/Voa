@@ -65,13 +65,6 @@ static NSString *headerCellID = @"headerCell";
     return self.modelArr[section].vos.count;
 }
 
-- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
-    XSYCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
-    headerView.backgroundColor = [UIColor whiteColor];
-    headerView.title = self.modelArr[indexPath.section].name;
-    return headerView;
-}
-
 - (UICollectionViewCell *)collectionView:(UICollectionView *)collectionView cellForItemAtIndexPath:(NSIndexPath *)indexPath{
     if (indexPath.section == 0 && indexPath.item == 0) {
         XSYCycleViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:videoCycleCellID forIndexPath:indexPath];
@@ -84,6 +77,25 @@ static NSString *headerCellID = @"headerCell";
     return cell;
 }
 
+- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
+    if (indexPath.item == 0 && indexPath.section == 0) {
+        return CGSizeMake(screenWidth, screenWidth * 0.618);
+        
+    }
+    CGFloat W = self.collectionView.bounds.size.width / 3 - 2;
+    CGFloat H = W * 0.618;
+    return CGSizeMake(W, H);
+}
+
+// 头视图
+- (UICollectionReusableView *)collectionView:(UICollectionView *)collectionView viewForSupplementaryElementOfKind:(NSString *)kind atIndexPath:(NSIndexPath *)indexPath{
+    XSYCollectionHeaderView *headerView = [collectionView dequeueReusableSupplementaryViewOfKind:UICollectionElementKindSectionHeader withReuseIdentifier:headerCellID forIndexPath:indexPath];
+    headerView.backgroundColor = [UIColor whiteColor];
+    headerView.title = self.modelArr[indexPath.section].name;
+    return headerView;
+}
+
+
 // 设置section头视图大小
 - (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout referenceSizeForHeaderInSection:(NSInteger)section
 {
@@ -91,15 +103,6 @@ static NSString *headerCellID = @"headerCell";
         return CGSizeZero;
     }
     return CGSizeMake(screenWidth, screenHeight * 0.05);
-}
-
-- (CGSize)collectionView:(UICollectionView *)collectionView layout:(UICollectionViewLayout *)collectionViewLayout sizeForItemAtIndexPath:(NSIndexPath *)indexPath{
-    if (indexPath.item == 0 && indexPath.section == 0) {
-        return CGSizeMake(screenWidth, screenWidth * 0.618);
-
-    }
-    CGFloat WH = self.collectionView.bounds.size.width / 3 - 2;
-    return CGSizeMake(WH, WH);
 }
 
 #pragma mark - lazy -

@@ -37,7 +37,7 @@
     NSMutableArray *titleArr = [NSMutableArray array];
     for (int i = 0; i < vos.count; i++) {
         [urlStrArr addObject:vos[i].picUrl];
-        [titleArr addObject:vos[i].title];
+        [titleArr addObject:[NSString stringWithFormat:@"今日推荐 : %@",vos[i].title]];
     }
     self.cycleScrollView.imageURLStringsGroup = urlStrArr;
     self.cycleScrollView.titlesGroup = titleArr;

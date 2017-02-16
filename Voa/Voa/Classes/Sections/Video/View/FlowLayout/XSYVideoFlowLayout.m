@@ -10,8 +10,9 @@
 
 @implementation XSYVideoFlowLayout
 - (void)prepareLayout{
-    CGFloat WH = self.collectionView.bounds.size.width / 3 - 2;
-    self.itemSize = CGSizeMake(WH, WH);
+    CGFloat W = self.collectionView.bounds.size.width / 3 - 2;
+    CGFloat H = W * 0.618;
+    self.itemSize = CGSizeMake(W, H);
     self.minimumLineSpacing = 3;
     self.minimumInteritemSpacing = 3;
     self.scrollDirection = UICollectionViewScrollDirectionVertical;

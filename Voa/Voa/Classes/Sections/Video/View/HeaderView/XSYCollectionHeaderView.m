@@ -18,10 +18,10 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         _titleView = [UILabel labelWithtextColor:mainColor font:[UIFont boldSystemFontOfSize:16]];
+        _titleView.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_titleView];
         [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
-            make.top.trailing.bottom.equalTo(self);
-            make.leading.equalTo(self).offset(8);
+            make.center.trailing.bottom.equalTo(self);
         }];
     }
     return self;
