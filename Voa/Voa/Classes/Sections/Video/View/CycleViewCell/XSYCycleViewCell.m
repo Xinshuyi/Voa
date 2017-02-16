@@ -12,7 +12,7 @@
 #import "XSYVideoFirstPageTopicModel.h"
 #import <Masonry.h>
 
-@interface XSYCycleViewCell ()
+@interface XSYCycleViewCell ()<SDCycleScrollViewDelegate>
 @property (nonatomic, strong) SDCycleScrollView *cycleScrollView;
 @end
 
@@ -23,6 +23,7 @@
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"placeHolderImage"];
         _cycleScrollView.pageDotColor = playViewGray;
         _cycleScrollView.currentPageDotColor = mainColor;
+        _cycleScrollView.delegate = self;
         [self.contentView addSubview:_cycleScrollView];
         [self.cycleScrollView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.edges.equalTo(self.contentView);
@@ -42,4 +43,13 @@
     self.cycleScrollView.imageURLStringsGroup = urlStrArr;
     self.cycleScrollView.titlesGroup = titleArr;
 }
+
+#pragma mark - cycleView delegate -
+
+- (void)cycleScrollView:(SDCycleScrollView *)cycleScrollView didSelectItemAtIndex:(NSInteger)index{
+    if ([self.delegate respondsToSelector:@selector(cycleViewCell:didSelectTheItemWithModel:)]) {
+        [self.delegate cycleViewCell:self didSelectTheItemWithModel:self.vos[index]];
+    }
+}
+
 @end

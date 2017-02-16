@@ -12,14 +12,22 @@
 
 @interface XSYCollectionHeaderView ()
 @property (nonatomic, strong) UILabel *titleView;
+@property (nonatomic, strong) UIImageView *backView;
+
 @end
 
 @implementation XSYCollectionHeaderView
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
-        _titleView = [UILabel labelWithtextColor:mainColor font:[UIFont boldSystemFontOfSize:16]];
+        _backView = [[UIImageView alloc] init];
+        _backView.image = [UIImage imageNamed:@"fenjiexian"];
+        _titleView = [UILabel labelWithtextColor:mainColor font:[UIFont boldSystemFontOfSize:20]];
         _titleView.textAlignment = NSTextAlignmentCenter;
+        [self addSubview:_backView];
         [self addSubview:_titleView];
+        [self.backView mas_makeConstraints:^(MASConstraintMaker *make) {
+            make.edges.equalTo(self);
+        }];
         [self.titleView mas_makeConstraints:^(MASConstraintMaker *make) {
             make.center.trailing.bottom.equalTo(self);
         }];

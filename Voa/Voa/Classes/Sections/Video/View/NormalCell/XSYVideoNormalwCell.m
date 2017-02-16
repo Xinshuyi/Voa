@@ -16,7 +16,6 @@
 @property (nonatomic, strong) UIImageView *iconView;
 @property (nonatomic, strong) UILabel *titleLabel;
 @property (nonatomic, strong) UILabel *desc_subLabel;
-@property (nonatomic, strong) UIView *shadowView;
 @end
 
 @implementation XSYVideoNormalwCell
@@ -24,9 +23,8 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         [self.contentView addSubview:self.iconView];
-        [self.iconView addSubview:self.shadowView];
-        [self.shadowView addSubview:self.titleLabel];
-        [self.shadowView addSubview:self.desc_subLabel];
+        [self.contentView addSubview:self.titleLabel];
+        [self.contentView addSubview:self.desc_subLabel];
         [self addConstraints];
     }
     return self;
@@ -35,21 +33,21 @@
 #pragma mark - addConstraints -
 - (void)addConstraints{
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.contentView);
-    }];
-    
-    [self.shadowView mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.edges.equalTo(self.iconView);
+        make.leading.trailing.top.equalTo(self.contentView);
+        make.height.equalTo(self.contentView.mas_width).multipliedBy(0.618);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.shadowView);
+        make.leading.equalTo(self.contentView);
+        make.top.equalTo(self.iconView.mas_bottom);
+        make.trailing.equalTo(self.contentView);
         make.bottom.equalTo(self.desc_subLabel.mas_top).offset(-5);
     }];
     
     [self.desc_subLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.titleLabel);
         make.bottom.equalTo(self.contentView).offset(-2);
+        make.trailing.equalTo(self.contentView);
     }];
 }
 
@@ -73,23 +71,16 @@
 
 - (UILabel *)titleLabel{
     if (_titleLabel == nil) {
-        _titleLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:10]];
+        _titleLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:14]];
     }
     return _titleLabel;
 }
 
 - (UILabel *)desc_subLabel{
     if (_desc_subLabel == nil) {
-        _desc_subLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:8]];
+        _desc_subLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:10]];
     }
     return _desc_subLabel;
 }
 
-- (UIView *)shadowView{
-    if (_shadowView == nil) {
-        _shadowView = [[UIView alloc] init];
-        _shadowView.backgroundColor = [UIColor colorWithWhite:0 alpha:0.3];
-    }
-    return _shadowView;
-}
 @end

@@ -60,5 +60,14 @@ typedef void(^FailureBlock)(NSError *error);
 /**
 视频首页
  */
-+ (void)getVideoDataWithSuccessBlock:(SuccessBlock)successBlock       failureBlock:(FailureBlock)failureBlock;
++ (void)getVideoDataWithSuccessBlock:(SuccessBlock)successBlock        failureBlock:(FailureBlock)failureBlock;
+
+
+/**
+ 视频第二页详情
+ */
++ (void)getVideoSecondPageWithContentID:(NSString *)contentID
+                           SuccessBlock:(SuccessBlock)successBlock
+                           failureBlock:(FailureBlock)failureBlock;
+
 @end

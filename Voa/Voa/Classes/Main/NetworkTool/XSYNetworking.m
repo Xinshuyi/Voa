@@ -19,6 +19,7 @@
 #import <SDWebImageManager.h>
 #import "XSYEssayDataTool.h"
 #import "XSYVideoFirstPageMainModel.h"
+#import "XSYVideoSecondPageMainModel.h"
 
 typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 @implementation XSYNetworking
@@ -252,5 +253,22 @@ typedef void (^DownLoadIMAGEBlock) (BOOL isDownload);
 //        }
 //
 //    }];
+}
+
++ (void)getVideoSecondPageWithContentID:(NSString *)contentID SuccessBlock:(SuccessBlock)successBlock failureBlock:(FailureBlock)failureBlock{
+    NSString *urlStr = [NSString stringWithFormat:@"http://so.open.163.com/movie/%@/getMovies4Ipad.htm",contentID];
+    [[NetworkingTools shared] request:GET urlString:urlStr parameters:nil completeBlock:^(id response, NSError *error) {
+
+        if (error == nil) {
+            XSYVideoSecondPageMainModel *model = [XSYVideoSecondPageMainModel mj_objectWithKeyValues:response];
+            if (successBlock) {
+                successBlock(model);
+            }
+        }else{
+            if (failureBlock) {
+                failureBlock(error);
+            }
+        }
+    }];
 }
 @end

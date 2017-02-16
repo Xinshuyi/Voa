@@ -18,12 +18,13 @@
 #import "XSYCollectionHeaderView.h"
 #import "XSYCycleViewCell.h"
 #import "XSYVideoNormalwCell.h"
+#import "XSYVideoSecondController.h"
 
 static NSString *videoCycleCellID = @"videoCycleCellID";
 static NSString *videoNormalCellID = @"videoNormalCellID";
 static NSString *headerCellID = @"headerCell";
 
-@interface VideoController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout>
+@interface VideoController ()<UICollectionViewDelegate,UICollectionViewDataSource,UICollectionViewDelegateFlowLayout,XSYCycleViewCellProtocol>
 @property (nonatomic, strong) NSArray <XSYVideoFirstPageMainModel *> *modelArr;
 @property (nonatomic, strong) UICollectionView *collectionView;
 
@@ -34,6 +35,7 @@ static NSString *headerCellID = @"headerCell";
 - (void)viewDidLoad {
     [super viewDidLoad];
     self.view.backgroundColor = [UIColor whiteColor];
+    self.title = @"视频专题";
     [self loadData];
     [self.view addSubview:self.collectionView];
     [self.collectionView mas_makeConstraints:^(MASConstraintMaker *make) {
@@ -69,11 +71,11 @@ static NSString *headerCellID = @"headerCell";
     if (indexPath.section == 0 && indexPath.item == 0) {
         XSYCycleViewCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:videoCycleCellID forIndexPath:indexPath];
         cell.vos = [self.modelArr firstObject].vos;
+        cell.delegate = self;
         return cell;
     }
     XSYVideoNormalwCell *cell = [collectionView dequeueReusableCellWithReuseIdentifier:videoNormalCellID forIndexPath:indexPath];
     cell.model = self.modelArr[indexPath.section].vos[indexPath.item];
-    cell.backgroundColor = [UIColor cz_randomColor];
     return cell;
 }
 
@@ -82,9 +84,14 @@ static NSString *headerCellID = @"headerCell";
         return CGSizeMake(screenWidth, screenWidth * 0.618);
         
     }
-    CGFloat W = self.collectionView.bounds.size.width / 3 - 2;
-    CGFloat H = W * 0.618;
+    CGFloat W = self.collectionView.bounds.size.width / 2 - 1.5;
+    CGFloat H = W * 0.8;
     return CGSizeMake(W, H);
+}
+
+// select item
+- (void)collectionView:(UICollectionView *)collectionView didSelectItemAtIndexPath:(NSIndexPath *)indexPath{
+    [self pushNewControllerWithModel:self.modelArr[indexPath.section].vos[indexPath.item]];
 }
 
 // 头视图
@@ -103,6 +110,18 @@ static NSString *headerCellID = @"headerCell";
         return CGSizeZero;
     }
     return CGSizeMake(screenWidth, screenHeight * 0.05);
+}
+
+// cyclecellDELEGATE
+- (void)cycleViewCell:(XSYCycleViewCell *)cell didSelectTheItemWithModel:(XSYVideoFirstPageTopicModel *)model{
+    [self pushNewControllerWithModel:model];
+}
+
+#pragma mark - push new controller -
+- (void)pushNewControllerWithModel:(XSYVideoFirstPageTopicModel *)model{
+    XSYVideoSecondController *secondController = [[XSYVideoSecondController alloc] init];
+    secondController.model = model;
+    [self.navigationController pushViewController:secondController animated:YES];
 }
 
 #pragma mark - lazy -

@@ -7,10 +7,18 @@
 //
 
 #import <UIKit/UIKit.h>
-@class XSYVideoFirstPageTopicModel;
+@class XSYVideoFirstPageTopicModel,XSYCycleViewCell;
+
+@protocol XSYCycleViewCellProtocol <NSObject>
+
+- (void)cycleViewCell:(XSYCycleViewCell *)cell didSelectTheItemWithModel:(XSYVideoFirstPageTopicModel *)model;
+
+@end
 
 @interface XSYCycleViewCell : UICollectionViewCell
 
 @property (nonatomic, strong) NSArray<XSYVideoFirstPageTopicModel *> *vos;
+@property (nonatomic, weak) id<XSYCycleViewCellProtocol> delegate;
+
 
 @end
