@@ -19,6 +19,7 @@
 #import "XSYCycleViewCell.h"
 #import "XSYVideoNormalwCell.h"
 #import "XSYVideoSecondController.h"
+#import <RealReachability.h>
 
 static NSString *videoCycleCellID = @"videoCycleCellID";
 static NSString *videoNormalCellID = @"videoNormalCellID";
@@ -119,10 +120,6 @@ static NSString *headerCellID = @"headerCell";
 
 #pragma mark - push new controller -
 - (void)pushNewControllerWithModel:(XSYVideoFirstPageTopicModel *)model{
-    if (model == nil) {
-        [SVProgressHUD showErrorWithStatus:@"网络不佳"];
-        return;
-    }
     XSYVideoSecondController *secondController = [[XSYVideoSecondController alloc] init];
     secondController.model = model;
     [self.navigationController pushViewController:secondController animated:YES];

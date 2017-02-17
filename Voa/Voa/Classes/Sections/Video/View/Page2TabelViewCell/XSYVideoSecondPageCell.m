@@ -42,9 +42,9 @@
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
-        make.leading.equalTo(self.iconView.mas_trailing).offset(15);
+        make.trailing.equalTo(self.contentView).offset(-8);
         make.top.equalTo(self.iconView);
-        make.trailing.lessThanOrEqualTo(self.contentView).offset(-8);
+        make.leading.greaterThanOrEqualTo(self.iconView).offset(5);
     }];
     
     [self.subtitleLabel mas_makeConstraints:^(MASConstraintMaker *make) {

@@ -16,12 +16,14 @@
 #import "CZAdditions.h"
 #import "XSYVideoDetailController.h"
 #import "XSYVideoSecondPageCell.h"
+#import "XSYVideoMovieController.h"
 
 static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 
 @interface XSYVideoSecondController ()<XSYVideoSecondPageTableHeaderViewProtocol>
 @property (nonatomic, strong) XSYVideoSecondPageMainModel *selfModel;
 @property (nonatomic, strong) XSYVideoSecondPageTableHeaderView *headerView;
+@property (nonatomic, strong) XSYVideoMovieController *moviePlayer;
 
 @end
 
@@ -70,12 +72,19 @@ static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 - (UITableViewCell *)tableView:(UITableView *)tableView cellForRowAtIndexPath:(NSIndexPath *)indexPath{
     XSYVideoSecondPageCell *cell = [tableView dequeueReusableCellWithIdentifier:secondPageVideoCellID forIndexPath:indexPath];
     cell.model = self.selfModel.videoList[indexPath.row];
-    cell.backgroundColor = [UIColor cz_randomColor];
+    cell.backgroundColor = mainColor;
     return cell;
 }
 
 - (NSString *)tableView:(UITableView *)tableView titleForHeaderInSection:(NSInteger)section{
-    return @"更多视频";
+    return @"视频详情";
+}
+
+- (void)tableView:(UITableView *)tableView didSelectRowAtIndexPath:(NSIndexPath *)indexPath{
+    self.moviePlayer = [[XSYVideoMovieController alloc] initWithContentURL:[NSURL URLWithString:self.selfModel.videoList[indexPath.row].repovideourlmp4]];
+    NSLog(@"%@",self.selfModel.videoList[indexPath.row].repovideourlmp4);
+
+    [self presentViewController:self.moviePlayer animated:YES completion:nil];
 }
 
 - (void)secondPageTableHeaderView:(XSYVideoSecondPageTableHeaderView *)secondPageTableHeaderView disTapMoreShadowView:(UIView *)shadowView WithModel:(XSYVideoSecondPageMainModel *)model{
