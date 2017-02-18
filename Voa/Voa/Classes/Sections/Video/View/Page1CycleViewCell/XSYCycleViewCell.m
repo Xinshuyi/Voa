@@ -21,6 +21,7 @@
     if (self = [super initWithFrame:frame]) {
         _cycleScrollView = [[SDCycleScrollView alloc] init];
         _cycleScrollView.placeholderImage = [UIImage imageNamed:@"placeHolderImage"];
+        _cycleScrollView.pageControlAliment = SDCycleScrollViewPageContolAlimentRight;
         _cycleScrollView.pageDotColor = playViewGray;
         _cycleScrollView.currentPageDotColor = mainColor;
         _cycleScrollView.delegate = self;
