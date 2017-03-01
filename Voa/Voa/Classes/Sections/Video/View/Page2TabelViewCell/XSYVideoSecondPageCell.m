@@ -37,13 +37,13 @@
     [self.iconView mas_makeConstraints:^(MASConstraintMaker *make) {
         make.leading.equalTo(self.contentView).offset(20);
         make.centerY.equalTo(self.contentView);
-        make.width.equalTo(self.contentView).multipliedBy(0.35);
+        make.width.equalTo(self.contentView).multipliedBy(0.4);
         make.height.equalTo(self.iconView.mas_width).multipliedBy(0.618);
     }];
     
     [self.titleLabel mas_makeConstraints:^(MASConstraintMaker *make) {
         make.trailing.equalTo(self.contentView).offset(-8);
-        make.top.equalTo(self.iconView);
+        make.bottom.equalTo(self.iconView.mas_top).offset(-2);
         make.leading.greaterThanOrEqualTo(self.iconView).offset(5);
     }];
     
@@ -80,8 +80,7 @@
 
 - (UILabel *)titleLabel{
     if (_titleLabel == nil) {
-        _titleLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:20]];
-        _titleLabel.numberOfLines = 0;
+        _titleLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:17]];
     }
     return _titleLabel;
 }
@@ -95,7 +94,7 @@
 
 - (UILabel *)subtitle_languageLabel{
     if (_subtitle_languageLabel == nil) {
-        _subtitle_languageLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:17]];
+        _subtitle_languageLabel = [UILabel labelWithtextColor:[UIColor whiteColor] font:[UIFont systemFontOfSize:15]];
     }
     return _subtitle_languageLabel;
 }

@@ -31,17 +31,25 @@ static NSString *secondPageVideoCellID = @"secondPageVideoCellID";
 
 - (void)viewDidLoad {
     [super viewDidLoad];
-    self.view.backgroundColor = mainColor;
-    self.tableView.rowHeight = screenWidth * 0.5;
+    [self basicSettingsOfController];
     [self loadData];
+    [self initialOfTableView];
+}
+
+- (void)initialOfTableView{
     // 注册
     [self.tableView registerClass:[XSYVideoSecondPageCell class] forCellReuseIdentifier:secondPageVideoCellID];
     // 头视图
     _headerView = [[XSYVideoSecondPageTableHeaderView alloc] initWithFrame:CGRectMake(0, 0, 0, screenHeight *0.618)];
+    
     _headerView.delegate = self;
     self.tableView.tableHeaderView = _headerView;
-    
     self.tableView.tableFooterView = [[UIView alloc] init];
+}
+
+- (void)basicSettingsOfController{
+    self.view.backgroundColor = mainColor;
+    self.tableView.rowHeight = screenWidth * 0.45;
 }
 
 - (void)loadData{
