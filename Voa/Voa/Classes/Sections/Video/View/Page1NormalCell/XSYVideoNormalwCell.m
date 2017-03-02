@@ -71,14 +71,14 @@
 
 - (UILabel *)titleLabel{
     if (_titleLabel == nil) {
-        _titleLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:14]];
+        _titleLabel = [UILabel labelWithtextColor:[UIColor blackColor] font:[UIFont systemFontOfSize:14]];
     }
     return _titleLabel;
 }
 
 - (UILabel *)desc_subLabel{
     if (_desc_subLabel == nil) {
-        _desc_subLabel = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:10]];
+        _desc_subLabel = [UILabel labelWithtextColor:[UIColor blackColor] font:[UIFont systemFontOfSize:10]];
     }
     return _desc_subLabel;
 }
