@@ -20,7 +20,7 @@
 - (instancetype)initWithFrame:(CGRect)frame{
     if (self = [super initWithFrame:frame]) {
         _backView = [[UIImageView alloc] init];
-        _backView.image = [UIImage imageNamed:@"fenjiexian"];
+//        _backView.image = [UIImage imageNamed:@"fenjiexian"];
         _titleView = [UILabel labelWithtextColor:mainColor font:[UIFont boldSystemFontOfSize:20]];
         _titleView.textAlignment = NSTextAlignmentCenter;
         [self addSubview:_backView];

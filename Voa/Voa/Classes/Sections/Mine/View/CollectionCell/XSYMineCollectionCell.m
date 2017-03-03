@@ -73,7 +73,7 @@
     if (_btn == nil) {
         _btn = [[XSYMineButton alloc] initWithFrame:self.contentView.bounds];
         _btn.titleLabel.textAlignment = NSTextAlignmentCenter;
-        [_btn setTitleColor:mainColor forState:UIControlStateNormal];
+        [_btn setTitleColor:[UIColor blackColor] forState:UIControlStateNormal];
         [_btn addTarget:self action:@selector(buttonTouchDown:) forControlEvents:UIControlEventTouchDown];
     }
     return _btn;

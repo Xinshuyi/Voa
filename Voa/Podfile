@@ -1,5 +1,5 @@
 platform :ios, '8.0'
-target "Voa"
+target 'Voa' do
 pod 'SDWebImage'
 pod 'FreeStreamer'
 pod 'MJExtension'
@@ -10,3 +10,5 @@ pod 'SVProgressHUD'
 pod 'FMDB'
 pod 'RealReachability'
 pod 'SDCycleScrollView'
+
+end

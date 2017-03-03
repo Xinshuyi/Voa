@@ -68,7 +68,7 @@
 
 - (UILabel *)nameLbl{
     if (_nameLbl == nil) {
-        _nameLbl = [UILabel labelWithtextColor:mainColor font:[UIFont systemFontOfSize:15]];
+        _nameLbl = [UILabel labelWithtextColor:[UIColor blackColor] font:[UIFont systemFontOfSize:15]];
         _nameLbl.text = @"怡宝宝";
     }
     return _nameLbl;

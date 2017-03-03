@@ -117,7 +117,7 @@
 - (UITextView *)contenLabel{
     if (_contenLabel == nil) {
         _contenLabel = [[UITextView alloc] init];
-        _contenLabel.textColor = mainColor;
+        _contenLabel.textColor = [UIColor blackColor];
         _contenLabel.font = [UIFont systemFontOfSize:15];
         _contenLabel.editable = NO;
         _contenLabel.scrollEnabled = NO;
